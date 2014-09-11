@@ -1,33 +1,54 @@
 React = require 'react'
+{Flux} = require 'delorean.js'
 Router = require 'react-router'
+userActions = require '../actions/user'
 user = require '../stores/user'
 
 
 Login = React.createClass
   
+  mixins: [Flux.mixins.storeListener]
+
   displayName: 'login'
 
   render: ->
-    {div, button} = React.DOM
+    {div, button, input} = React.DOM
+
+    console.log 'login render', @state
 
     (div {
       className: 'login'
     }, [
-      (button {
+      input {
+        type: 'text'
+        ref: 'username'
+        placeholder: 'username'
+      }
+      input {
+        type: 'password'
+        ref: 'password'
+        placeholder: 'password'
+      }
+      button {
         onClick: @handleLogin
-      }, ['login'])
+      }, ['login']
     ])
 
 
   handleLogin: (e) ->
-    user.loggedIn = yes
+    username = @refs.username.getDOMNode().value
+    password = @refs.password.getDOMNode().value
+    userActions.attemptLogin(username, password)
 
-    if user.attemptedTransition?
-      transition = user.attemptedTransition
-      user.attemptedTransition = null
-      transition.retry()
-    else
-      Router.replaceWith '/start'
+  storeDidChange: ->
+    if user.isLoggedIn()
+      if user.requestedNav? then user.requestedNav.retry()
+      else Router.replaceWith('/norm');
+
+  getInitialState: ->
+    console.log new Date().getTime()
+
+    {}
 
 
 module.exports = Login

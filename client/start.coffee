@@ -5,7 +5,5 @@ routes = require './routes'
 
 
 domready ->
-  #document.body.innerHTML = ''
-  #console.log App
-
+  document.body.innerHTML = ''
   React.renderComponent(routes, document.body)

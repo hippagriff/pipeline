@@ -1,24 +1,23 @@
 Router = require('react-router');
-{Route, DefaultRoute, Routes, Link, NotFoundRoute} = Router
+userDispatcher = require './dispatchers/user'
+{Route, DefaultRoute, Routes, Link, NotFoundRoute, Redirect} = Router
 
-App = require './app'
-TestPath = require './testpath'
+Search = require './components/search'
 Login = require './components/login'
 
 module.exports = (
   Routes {}, [
-    Route {
-      path: 'start'
-      handler: App
-    }
-    Route {
-      path: 'test/:patientId'
-      handler: TestPath
+    DefaultRoute {
+      handler: Search
     }
     Route {
       path: 'login'
       handler: Login
+      dispatcher: userDispatcher
+    }
+    Route {
+      path: 'search'
+      handler: Search
     }
   ]
-
 )
