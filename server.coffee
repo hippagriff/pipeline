@@ -27,7 +27,7 @@ env = app.settings.env
 if env is 'development'
 
   # Mock API 
-  require('./fixture_api/')
+  require('./fixtures/')(app)
   
   # Load all static files under the route /assets
   app.use('/client', express['static'](path.join(__dirname, 'client')))
