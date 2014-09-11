@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run client-watch & npm run server-start",
-    "server-start": "./node_modules/.bin/node-supervisor -x coffee --watch server,server.coffee server.coffee",
+    "server-start": "./node_modules/.bin/node-supervisor -x coffee --watch server,fixtures,server.coffee server.coffee",
     "client-watch": "./node_modules/.bin/watchify -t coffeeify client/start.coffee -o client/bundle.js --extension=.coffee --debug --verbose"
   },
   "dependencies": {
