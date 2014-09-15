@@ -14,26 +14,31 @@ Login = React.createClass
   render: ->
     {div, button, input} = React.DOM
 
-    console.log 'login render', @state
-
-    (div {
+    
+    div {
       className: 'login'
     }, [
-      input {
-        type: 'text'
-        ref: 'username'
-        placeholder: 'username'
-      }
-      input {
-        type: 'password'
-        ref: 'password'
-        placeholder: 'password'
-      }
-      button {
-        onClick: @handleLogin
-      }, ['login']
-    ])
+      div {
+        className: 'login-form '
+      }, [
+        input {
+          type: 'text'
+          ref: 'username'
+          placeholder: 'Username'
+        }
+        input {
+          type: 'password'
+          ref: 'password'
+          placeholder: 'Password'
+        }
+        button {
+          onClick: @handleLogin
+        }, ['Continue']
+      ]
+    ]
 
+  componentWillMount: ->
+    @checkLoginStatus()
 
   handleLogin: (e) ->
     username = @refs.username.getDOMNode().value
@@ -41,9 +46,12 @@ Login = React.createClass
     userActions.attemptLogin(username, password)
 
   storeDidChange: ->
-    if user.isLoggedIn()
+    @checkLoginStatus()
+
+  checkLoginStatus: ->
+    if user.store.isLoggedIn()
       if user.requestedNav? then user.requestedNav.retry()
-      else Router.replaceWith('/norm');
+      else Router.replaceWith '/search'
 
   getInitialState: ->
     console.log new Date().getTime()
