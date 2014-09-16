@@ -25,38 +25,37 @@ Login = React.createClass
           type: 'text'
           ref: 'username'
           placeholder: 'Username'
+          onKeyPress: @handleLogin
         }
         input {
           type: 'password'
           ref: 'password'
           placeholder: 'Password'
+          onKeyPress: @handleLogin
         }
         button {
           onClick: @handleLogin
-        }, ['Continue']
+        }, ['→']
       ]
     ]
 
-  componentWillMount: ->
-    @checkLoginStatus()
+  #componentWillMount: -> do @checkLoginStatus
+
+  componentDidUpdate: -> do @checkLoginStatus
 
   handleLogin: (e) ->
+    if e.type is 'keypress' and e.key isnt 'Enter' then return
     username = @refs.username.getDOMNode().value
     password = @refs.password.getDOMNode().value
     userActions.attemptLogin(username, password)
 
-  storeDidChange: ->
-    @checkLoginStatus()
-
   checkLoginStatus: ->
-    if user.store.isLoggedIn()
-      if user.requestedNav? then user.requestedNav.retry()
+    console.log user
+    if @state.stores.user.isLoggedIn
+      if user.store.requestedNav? then user.store.requestedNav.retry()
       else Router.replaceWith '/search'
+    console.log user
 
-  getInitialState: ->
-    console.log new Date().getTime()
-
-    {}
 
 
 module.exports = Login

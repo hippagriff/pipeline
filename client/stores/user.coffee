@@ -19,7 +19,8 @@ User = Flux.createStore
 
   getState: ->
     {
-      user: @data?.user or {}
+      data: @data?.user or {}
+      isLoggedIn: @isLoggedIn()
     }
 
   

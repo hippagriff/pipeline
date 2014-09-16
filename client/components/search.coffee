@@ -8,25 +8,38 @@ App = React.createClass
   mixins: [authCheck]
   
   render: ->
-    {div, button} = React.DOM
+    {div, ul, input, button} = React.DOM
     
 
     div {
-      className: 'app-container'
+      className: 'search-container'
+    }, [
+      div {
+        className: 'search-bar'
       }, [
+        input {
+          ref:'searchField'
+          className: 'search-input'
+          type: 'search'
+          placeholder: 'Search Patients'
+        }, []
         button {
-          onClick: @handleLogout
-        }, ['logout']
+            className: 'search-logout-btn'
+            onClick: @handleLogout
+            title: 'Logout'
+        }, ['⇥']
       ]
+      ul {
+        className: 'search-results-container'
+      }, []
+    ]
 
 
-  getInitialState: ->
-    {
+  getInitialState: -> {}
 
-    }
+  componentDidMount: -> @refs.searchField.getDOMNode().focus()
 
-  handleLogout: ->
-    userActions.attemptLogout('')
+  handleLogout: -> userActions.attemptLogout('')
 
 
 module.exports = App
