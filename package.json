@@ -5,10 +5,10 @@
   "scripts": {
     "start": "npm run client-watch & npm run server-start",
     "server-start": "./node_modules/.bin/node-supervisor -x coffee --watch server,fixtures,server.coffee server.coffee",
-    "client-watch": "./node_modules/.bin/watchify -t coffeeify client/start.coffee -o client/bundle.js --extension=.coffee --debug --verbose"
+    "client-watch": "./node_modules/.bin/watchify -t coffeeify client/start.coffee -o client/bundle.js --extension=.coffee --verbose"
   },
   "dependencies": {
-    "delorean.js": "~0.5.0-4",
+    "delorean.js": "git+https://github.com/deloreanjs/delorean.git",
     "detect-dom-ready": "~1.0.2",
     "errorhandler": "~1.1.1",
     "express": "~4.8.5",
@@ -17,7 +17,8 @@
     "react": "~0.11.1",
     "react-router": "^0.7.0",
     "serve-favicon": "~2.1.1",
-    "serve-static": "~1.5.3"
+    "serve-static": "~1.5.3",
+    "spin": "0.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^3.0.0",
