@@ -1,0 +1,27 @@
+.search-container {
+  .abs-pos(0, 0, 0, 0);
+  overflow: hidden;
+}
+.search-bar {
+  .abs-pos(@top: 0, @right: 0, @left: 0);
+  height: 50px;
+  background-image: linear-gradient(top, @white, @light-gray);
+  border-bottom: 1px inset @light-medium-gray;
+}
+.search-input {
+  width: 33%;
+  .abs-pos(@top: 15px, @left: 33%);
+  text-align: center;
+}
+
+.search-logout-btn {
+  .abs-pos(@top: 12px, @right: 15px);
+  font-size: 20px;
+}
+
+.search-results-container {
+  .abs-pos(51px, 0, 0, 0);
+  padding: 0px;
+  margin: 0px;
+  overflow: auto;
+}
