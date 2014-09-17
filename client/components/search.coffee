@@ -1,15 +1,27 @@
 React = require 'react'
+{Flux} = require 'delorean.js'
 authCheck = require '../mixins/authcheck'
+
 userActions = require '../actions/user'
+searchActions = require '../actions/patient_search'
+
+searchResult = require './patient_search_result'
 
 
-App = React.createClass
+Search = React.createClass
 
-  mixins: [authCheck]
+  mixins: [authCheck, Flux.mixins.storeListener]
   
   render: ->
     {div, ul, input, button} = React.DOM
-    
+    {results} = @state.stores.patientSearch
+
+    #console.log @state.stores.patientSearch.results
+    patients = []
+    patients.push((searchResult {
+      patient: patient
+    }, [])) for patient in results
+
 
     div {
       className: 'search-container'
@@ -22,6 +34,7 @@ App = React.createClass
           className: 'search-input'
           type: 'search'
           placeholder: 'Search Patients'
+          onKeyUp: @executeSearch
         }, []
         button {
             className: 'search-logout-btn'
@@ -31,7 +44,7 @@ App = React.createClass
       ]
       ul {
         className: 'search-results-container'
-      }, []
+      }, [patients]
     ]
 
 
@@ -41,5 +54,10 @@ App = React.createClass
 
   handleLogout: -> userActions.attemptLogout('')
 
+  executeSearch: (e) ->
+    term = @refs.searchField.getDOMNode().value
+    searchActions.executeSearch(term)
 
-module.exports = App
+
+
+module.exports = Search

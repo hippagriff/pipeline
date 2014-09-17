@@ -8,7 +8,7 @@ Login = require './components/login'
 
 # Dispathers
 userDispatcher = require './dispatchers/user'
-
+searchDispatcher = require './dispatchers/patient_search'
 
 module.exports = (
   Routes {}, [
@@ -23,6 +23,7 @@ module.exports = (
     Route {
       path: 'search'
       handler: Search
+      dispatcher: searchDispatcher
     }
   ]
 )

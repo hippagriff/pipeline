@@ -6,6 +6,8 @@ module.exports = (req, res) ->
 
   if not term? then res.status(400).end()
   
+  term = term.toLowerCase()
+
   results = []
 
   for patient in patientData
@@ -15,7 +17,7 @@ module.exports = (req, res) ->
 
     for given in name.given
       givenMatch = no
-      if given.search(term) isnt -1
+      if given.toLowerCase().search(term) isnt -1
         results.push(patient)
         givenMatch = yes
         break
@@ -24,7 +26,7 @@ module.exports = (req, res) ->
 
     for family in name.family
       familyMatch = no
-      if family.search(term) isnt -1
+      if family.toLowerCase().search(term) isnt -1
         results.push(patient)
         familyMatch = yes
         break
