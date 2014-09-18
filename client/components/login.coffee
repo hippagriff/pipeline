@@ -50,11 +50,9 @@ Login = React.createClass
     userActions.attemptLogin(username, password)
 
   checkLoginStatus: ->
-    console.log user
     if @state.stores.user.isLoggedIn
       if user.store.requestedNav? then user.store.requestedNav.retry()
       else Router.replaceWith '/search'
-    console.log user
 
 
 

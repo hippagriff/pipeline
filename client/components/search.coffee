@@ -20,6 +20,7 @@ Search = React.createClass
     patients = []
     patients.push((searchResult {
       patient: patient
+      key: patient.identifier[0].value
     }, [])) for patient in results
 
 
