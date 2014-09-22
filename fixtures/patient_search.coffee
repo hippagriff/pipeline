@@ -9,28 +9,6 @@ module.exports = (req, res) ->
   term = term.toLowerCase()
 
   results = []
-
-  for patient in patientData
-    name = _.findWhere(patient.name, {use: 'official'})
-
-    unless name? then continue
-
-    for given in name.given
-      givenMatch = no
-      if given.toLowerCase().search(term) isnt -1
-        results.push(patient)
-        givenMatch = yes
-        break
-
-    if givenMatch then continue
-
-    for family in name.family
-      familyMatch = no
-      if family.toLowerCase().search(term) isnt -1
-        results.push(patient)
-        familyMatch = yes
-        break
-
-    if familyMatch then continue
-
+  results.push(patient) for patient in patientData when patient.firstName.toLowerCase().search(term) isnt -1 or patient.lastName.toLowerCase().search(term) isnt -1
+    
   res.json(results)

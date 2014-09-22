@@ -20,7 +20,7 @@ Search = React.createClass
     patients = []
     patients.push((searchResult {
       patient: patient
-      key: patient.identifier[0].value
+      key: patient.id
     }, [])) for patient in results
 
 
@@ -36,6 +36,7 @@ Search = React.createClass
           type: 'search'
           placeholder: 'Search Patients'
           onKeyUp: @executeSearch
+          onClick: @executeSearch
         }, []
         button {
             className: 'search-logout-btn'

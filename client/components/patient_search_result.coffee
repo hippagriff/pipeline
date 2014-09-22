@@ -11,20 +11,13 @@ PatientSearchResult = React.createClass
   render: ->
     {div, span, li, br} = React.DOM
 
-    {family, given} = @props.patient.name[0]
+    {firstName, lastName, dateOfBirth, mrn, gender} = @props.patient
   
-    fullName = ''
-    fullName += "#{name}" for name in family
-    fullName += ', '
-    fullName += "#{name} " for name in given
+    fullName = "#{firstName} #{lastName}"
 
-    {value, label} = @props.patient.identifier[0]
 
-    DOB = moment(@props.patient.birthDate, 'YYYY-MM-DD')
-    console.log DOB
-    YO = moment().diff(DOB, 'years')
-
-    gender = @props.patient.gender.coding[0].display
+    DOB = moment(dateOfBirth).utc()
+    YO = moment().utc().diff(DOB, 'years')
 
     li {
       className: 'search-result-patient'
@@ -38,7 +31,7 @@ PatientSearchResult = React.createClass
       div {
         className: 'search-patient-details'
       }, [
-        "#{label}: #{value}"
+        "mrn: #{mrn}"
         br {}
         "#{YO} YO, #{gender}"
       ]
