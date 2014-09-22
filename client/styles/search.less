@@ -9,12 +9,25 @@
   border-bottom: 1px inset @light-medium-gray;
 }
 .search-input {
-  width: 33%;
+  width: 260px;
   .abs-pos(@top: 15px, @left: 15px);
 }
 .search-input:focus {
   background: none;
 }
+.search-clear {
+  width: 14px;
+  height: 14px;
+  .abs-pos(@top: 21px, @left: 265px);
+  border-radius: 7px;
+  background: url(../images/black-x.png) 3px 3px no-repeat;
+  color: white;
+  border: none;
+  &.is-hidden {
+    display: none;
+  }
+}
+
 
 .search-logout-btn {
   .abs-pos(@top: 12px, @right: 15px);
@@ -63,4 +76,5 @@
     color: @medium-gray;
   }
 }
+
 

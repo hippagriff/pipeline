@@ -23,6 +23,9 @@ Search = React.createClass
       key: patient.id
     }, [])) for patient in results
 
+    searchClearClass = 'search-clear'
+    if @state.searchTerm.length is 0 then searchClearClass += ' is-hidden'
+
 
     div {
       className: 'search-container'
@@ -33,10 +36,14 @@ Search = React.createClass
         input {
           ref:'searchField'
           className: 'search-input'
-          type: 'search'
+          type: 'text'
           placeholder: 'Search Patients'
           onKeyUp: @executeSearch
-          onClick: @executeSearch
+        }, []
+        button {
+          className: searchClearClass
+          onClick: @clearSearch
+          title: 'Clear Search'
         }, []
         button {
             className: 'search-logout-btn'
@@ -50,15 +57,26 @@ Search = React.createClass
     ]
 
 
-  getInitialState: -> {}
+  getInitialState: -> {
+    searchTerm: ''
+  }
 
   componentDidMount: -> @refs.searchField.getDOMNode().focus()
 
   handleLogout: -> userActions.attemptLogout('')
 
   executeSearch: (e) ->
-    term = @refs.searchField.getDOMNode().value
-    searchActions.executeSearch(term)
+    searchTerm = @refs.searchField.getDOMNode().value
+    searchActions.executeSearch(searchTerm)
+
+    @setState({searchTerm})
+
+  clearSearch: (e) ->
+    @refs.searchField.getDOMNode().value = ''
+    @executeSearch(e);
+
+
+
 
 
 

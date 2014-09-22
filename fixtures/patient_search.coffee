@@ -5,6 +5,7 @@ module.exports = (req, res) ->
   {term} = req.query
 
   if not term? then res.status(400).end()
+  if term is '' then res.json([])
   
   term = term.toLowerCase()
 

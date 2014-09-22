@@ -5,7 +5,7 @@ Router = require 'react-router'
 module.exports = 
 
   executeSearch: (searchTerm) ->
-    if searchTerm.length < 3 then searchDispatcher.setSearchResults([])
+    if searchTerm.length < 2 then searchDispatcher.setSearchResults([])
     else 
       new Request(
         url: '/api/patient'
