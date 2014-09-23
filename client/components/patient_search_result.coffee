@@ -11,9 +11,10 @@ PatientSearchResult = React.createClass
   render: ->
     {div, span, li, br} = React.DOM
 
-    {firstName, lastName, dateOfBirth, mrn, gender} = @props.patient
+    {firstName, lastName, middleName, dateOfBirth, mrn, gender} = @props.patient
   
-    fullName = "#{firstName} #{lastName}"
+    fullName = "#{lastName}, #{firstName}"
+    if middleName? and middleName isnt '' then fullName += " #{middleName}"
 
 
     DOB = moment(dateOfBirth).utc()
