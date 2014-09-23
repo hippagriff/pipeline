@@ -3,7 +3,7 @@ express = require 'express'
 crypto = require 'crypto'
 fs = require 'fs'
 pkg = require '../package'
-lessCompiler = require './route_handlers/less_compiler'
+stylusCompiler = require './route_handlers/stylus_compiler'
 
 
 module.exports = (app, server) ->
@@ -17,7 +17,7 @@ module.exports = (app, server) ->
     app.use('/', express['static'](path.join(__dirname, '../', 'client')))
     
     # Less compiler
-    app.get('/styles/:filename', lessCompiler)
+    app.get('/styles/:filename', stylusCompiler)
 
   # Root route, render the app
   app.get('/', (req, res) ->
