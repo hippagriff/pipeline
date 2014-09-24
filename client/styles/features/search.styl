@@ -1,12 +1,16 @@
-.search-container
+&.search-container
   absPos(0, 0, 0, 0)
   overflow: hidden
+  background-image: linear-gradient(top, startBlue, endBlue)
 
-.search-bar
-  absPos(top: 0, right: 0, left: 0)
+.bar
+  absPos(top: -51px, right: 0px, left: 0px)
   height: 50px
-  background-image: linear-gradient(top, white, lightGray)
+  background-image: linear-gradient(top, searchStart, searchEnd)
   border-bottom: 1px inset lightMediumGray
+  transition: top .3s ease-out
+  &.is-visible
+    top: 0px;
 
 .search-input
   width: 260px
@@ -20,18 +24,21 @@
   height: 14px
   absPos(top: 21px, left: 265px)
   border-radius: 7px
-  background: url('../images/black-x.png') 3px 3px no-repeat
+  background-image: url('../images/white-x.svg')
+  background-position: 2px 3px
+  background-repeat: no-repeat
+  background-size: 8px;
   color: white
   border: none
   
   &.is-hidden
     display: none
 
-.search-logout-btn
+.logout-btn
   absPos(top: 12px, right: 15px)
   font-size: 20px
 
-.search-results-container
+.results-container
   absPos(51px, 0, 0, 0)
   padding: 0px
   margin: 0px
@@ -42,6 +49,7 @@
   height: 30px
   border-bottom: 1px inset lightMediumGray
   padding: 5px
+  background: lightGray
 
 .search-patient-picture
   float: left

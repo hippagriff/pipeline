@@ -1,6 +1,6 @@
 {Flux} = require 'delorean.js'
 
-User = Flux.createStore
+UserStore = Flux.createStore
   
   data: null
   requestedNav: null
@@ -62,4 +62,4 @@ User = Flux.createStore
     window.localStorage.removeItem 'user'
 
 
-module.exports = new User()
+module.exports = new UserStore()

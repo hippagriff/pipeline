@@ -1,21 +1,58 @@
 
-.login
-  position: absolute
-  top: 0
-  left: 0
-  bottom: 0
-  right: 0
-  background-image: linear-gradient(top, white, lightGray)
+&.login-container
+  absPos(top: 0, right: 0, bottom: 0, left: 0)
+  background-image: linear-gradient(top, startBlue, endBlue)
 
-.login-form
-  position: absolute
-  top: 40%
-  height: 30px
-  width: 525px
-  padding-left: 125px
+.logo
+  absPos(left: 125px)
+  opacity: 1
+  height: 40px
+  background-image: url('../../images/fake_logo.png')
+  background-position: 0px 0px
+  background-repeat: no-repeat
+  background-size: 39px
+  padding-left: 50px
+  color: white
+  font-size: 30px
+  line-height: 40px
 
+.logo-enter
+  left: -600px
+  transition: left .3s ease-out
+  &.logo-enter-active
+    left: 125px
+
+.logo-leave
+  left: 125px
+  transition: left .3s ease-out
+  &.logo-leave-active
+    left: -600px
+
+.form-container
+  absPos(top: 40%, right: 0, left: 0)
+  height: 100px
+  overflow: hidden
+
+.fields
+  absPos(top: 50px, left: 125px)
+  height: 40px
   input
     font-size: 18px
-
   button
     font-size: 17px
+  
+.fields-enter
+  left: 1600px
+  transition: left .3s ease-out
+  &.fields-enter-active
+    left: 125px
+
+.fields-leave
+  left: 125px
+  transition: left .3s ease-out
+  &.fields-leave-active
+    left: 1600px
+
+
+
+

@@ -1,11 +1,14 @@
-React = require 'react'
+React = require 'react/addons'
+ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 {Flux} = require 'delorean.js'
 authCheck = require '../mixins/authcheck'
 
 userActions = require '../actions/user'
 searchActions = require '../actions/patient_search'
 
-searchResult = require './patient_search_result'
+SearchBar = require './search_bar'
+SearchResult = require './search_result_patient'
+
 
 
 Search = React.createClass
@@ -16,64 +19,52 @@ Search = React.createClass
     {div, ul, input, button} = React.DOM
     {results} = @state.stores.patientSearch
 
-    #console.log @state.stores.patientSearch.results
+    #console.log @state.showSearchBar
+
+    #searchBar = []
+    #if @state.showSearchBar
+    #  searchBar.push(SearchBar {
+    #    key: 'searchBar'
+    #    handleLogout: @handleLogout
+    #    executeSearch: @executeSearch
+    #  }, [])
+
     patients = []
-    patients.push((searchResult {
+    patients.push((SearchResult {
       patient: patient
       key: patient.id
     }, [])) for patient in results
 
-    searchClearClass = 'search-clear'
-    if @state.searchTerm.length is 0 then searchClearClass += ' is-hidden'
-
-
     div {
       className: 'search-container'
+      id: 'search'
     }, [
-      div {
-        className: 'search-bar'
-      }, [
-        input {
-          ref:'searchField'
-          className: 'search-input'
-          type: 'text'
-          placeholder: 'Search Patients'
-          onKeyUp: @executeSearch
-        }, []
-        button {
-          className: searchClearClass
-          onClick: @clearSearch
-          title: 'Clear Search'
-        }, []
-        button {
-            className: 'search-logout-btn'
-            onClick: @handleLogout
-            title: 'Logout'
-        }, ['⇥']
-      ]
+      SearchBar {
+        key: 'searchBar'
+        handleLogout: @handleLogout
+        executeSearch: @executeSearch
+      }, []
       ul {
-        className: 'search-results-container'
-      }, [patients]
+        className: 'results-container'
+        key: 'results'
+      }, patients
     ]
 
 
-  getInitialState: -> {
-    searchTerm: ''
-  }
+  getInitialState: -> 
+    {
+      showSearchBar: no
+    }
 
-  componentDidMount: -> @refs.searchField.getDOMNode().focus()
+  componentDidMount: -> 
+    @setState({showSearchBar: yes})
 
   handleLogout: -> userActions.attemptLogout('')
 
-  executeSearch: (e) ->
-    searchTerm = @refs.searchField.getDOMNode().value
+  executeSearch: (searchTerm) ->
     searchActions.executeSearch(searchTerm)
-
     @setState({searchTerm})
 
-  clearSearch: (e) ->
-    @refs.searchField.getDOMNode().value = ''
-    @executeSearch(e);
 
 
 
