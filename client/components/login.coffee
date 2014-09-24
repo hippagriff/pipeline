@@ -1,6 +1,10 @@
-React = require 'react'
+React = require 'react/addons'
+ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 {Flux} = require 'delorean.js'
 Router = require 'react-router'
+
+LoginFields = require './login_fields'
+
 userActions = require '../actions/user'
 user = require '../stores/user'
 
@@ -15,44 +19,52 @@ Login = React.createClass
     {div, button, input} = React.DOM
 
     
+    logo = []
+    fields = []
+    if @state.showForm and not @state.stores.user.isLoggedIn
+      logo.push div {
+        className: 'logo'
+        key: 'logo'
+      }, ['AegleCare']
+
+      fields.push LoginFields {
+        handleLogin: @handleLogin
+        navOut: @navOut
+        key: 'fields'
+      }, []
+    
+    
     div {
-      className: 'login'
+      className: 'login-container'
+      id: 'login'
+      key: 'login-container'
     }, [
       div {
-        className: 'login-form '
+        className: 'form-container'
+        key: 'form-container'
       }, [
-        input {
-          type: 'text'
-          ref: 'username'
-          placeholder: 'Username'
-          onKeyPress: @handleLogin
-        }
-        input {
-          type: 'password'
-          ref: 'password'
-          placeholder: 'Password'
-          onKeyPress: @handleLogin
-        }
-        button {
-          onClick: @handleLogin
-        }, ['→']
+        ReactCSSTransitionGroup {
+          transitionName: 'logo'
+          key: 'logoTrans'
+        }, logo
+        ReactCSSTransitionGroup {
+          transitionName: 'fields'
+          key: 'fieldsTrans'
+        }, fields
       ]
     ]
 
-  #componentWillMount: -> do @checkLoginStatus
+  getInitialState: -> {showForm: no}
 
-  componentDidUpdate: -> do @checkLoginStatus
+  componentDidMount: -> @setState({showForm: yes})
 
-  handleLogin: (e) ->
-    if e.type is 'keypress' and e.key isnt 'Enter' then return
-    username = @refs.username.getDOMNode().value
-    password = @refs.password.getDOMNode().value
-    userActions.attemptLogin(username, password)
+  handleLogin: (username, password) -> userActions.attemptLogin(username, password)
 
-  checkLoginStatus: ->
-    if @state.stores.user.isLoggedIn
-      if user.store.requestedNav? then user.store.requestedNav.retry()
-      else Router.replaceWith '/search'
+  checkLoginStatus: -> if @state.stores.user.isLoggedIn then @setState({showForm: no})
+
+  navOut: ->
+    if user.store.requestedNav? then user.store.requestedNav.retry()
+    else Router.replaceWith '/search'
 
 
 

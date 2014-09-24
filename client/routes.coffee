@@ -14,16 +14,19 @@ module.exports = (
   Routes {}, [
     DefaultRoute {
       handler: Search
+      key: 'defaultRoute'
     }
     Route {
       path: 'login'
       handler: Login
       dispatcher: userDispatcher
+      key: 'login'
     }
     Route {
       path: 'search'
       handler: Search
       dispatcher: searchDispatcher
+      key: 'search'
     }
   ]
 )

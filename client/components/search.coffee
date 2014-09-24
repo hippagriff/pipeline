@@ -29,6 +29,7 @@ Search = React.createClass
 
     div {
       className: 'search-container'
+      id: 'search'
     }, [
       div {
         className: 'search-bar'

@@ -1,11 +1,12 @@
-.search-container
+&.search-container
   absPos(0, 0, 0, 0)
   overflow: hidden
+  background-image: linear-gradient(top, startBlue, endBlue)
 
 .search-bar
   absPos(top: 0, right: 0, left: 0)
   height: 50px
-  background-image: linear-gradient(top, white, lightGray)
+  background-image: linear-gradient(top, searchStart, searchEnd)
   border-bottom: 1px inset lightMediumGray
 
 .search-input
@@ -42,6 +43,7 @@
   height: 30px
   border-bottom: 1px inset lightMediumGray
   padding: 5px
+  background: lightGray
 
 .search-patient-picture
   float: left
