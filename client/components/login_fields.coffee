@@ -34,6 +34,7 @@ LoginFields = React.createClass
   componentWillUnmount: ->
     @props.navOut()
 
+
   handleLogin: (e) ->
     if e.type is 'keypress' and e.key isnt 'Enter' then return
     username = @refs.username.getDOMNode().value

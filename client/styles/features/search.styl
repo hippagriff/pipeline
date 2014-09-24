@@ -3,11 +3,23 @@
   overflow: hidden
   background-image: linear-gradient(top, startBlue, endBlue)
 
-.search-bar
-  absPos(top: 0, right: 0, left: 0)
+.bar
+  absPos(top: 0px, right: 0px, left: 0px)
   height: 50px
   background-image: linear-gradient(top, searchStart, searchEnd)
   border-bottom: 1px inset lightMediumGray
+
+.bar-enter
+  top: -51px
+  transition: top 3s ease-out
+  &.bar-enter-active
+    top: 0px
+
+.bar-leave
+  top: 0px
+  transition: top .3s ease-out
+  &.bar-leave-active
+    top: -51px
 
 .search-input
   width: 260px
@@ -21,7 +33,7 @@
   height: 14px
   absPos(top: 21px, left: 265px)
   border-radius: 7px
-  background-image: url('../images/black-x.svg')
+  background-image: url('../images/white-x.svg')
   background-position: 2px 3px
   background-repeat: no-repeat
   background-size: 8px;
@@ -31,11 +43,11 @@
   &.is-hidden
     display: none
 
-.search-logout-btn
+.logout-btn
   absPos(top: 12px, right: 15px)
   font-size: 20px
 
-.search-results-container
+.results-container
   absPos(51px, 0, 0, 0)
   padding: 0px
   margin: 0px
