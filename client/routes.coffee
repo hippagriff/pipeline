@@ -15,6 +15,7 @@ module.exports = (
     DefaultRoute {
       handler: Search
       key: 'defaultRoute'
+      dispatcher: searchDispatcher
     }
     Route {
       path: 'login'
