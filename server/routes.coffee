@@ -16,7 +16,7 @@ module.exports = (app, server) ->
     # Load static files out of the 'client' directory in dev
     app.use('/', express['static'](path.join(__dirname, '../', 'client')))
     
-    # Less compiler
+    # Stylus compiler
     app.get('/styles/:filename', stylusCompiler)
 
   # Root route, render the app
