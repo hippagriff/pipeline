@@ -10,8 +10,11 @@ SearchBar = React.createClass
     searchClearClass = 'search-clear'
     if @state.searchTerm.length is 0 then searchClearClass += ' is-hidden'
 
+    className = 'bar'
+    if @state.showBar then className += ' is-visible'
+
     div {
-        className: 'bar'
+        className: className
     }, [
       input {
         ref:'searchField'
@@ -37,10 +40,14 @@ SearchBar = React.createClass
 
   getInitialState: -> {
     searchTerm: ''
+    showBar: no
   }
 
   componentDidMount: -> 
     @refs.searchField.getDOMNode().focus()
+
+    @setState({showBar: yes})
+
 
   executeSearch: (e) ->
     searchTerm = @refs.searchField.getDOMNode().value

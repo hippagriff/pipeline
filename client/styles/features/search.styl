@@ -4,22 +4,13 @@
   background-image: linear-gradient(top, startBlue, endBlue)
 
 .bar
-  absPos(top: 0px, right: 0px, left: 0px)
+  absPos(top: -51px, right: 0px, left: 0px)
   height: 50px
   background-image: linear-gradient(top, searchStart, searchEnd)
   border-bottom: 1px inset lightMediumGray
-
-.bar-enter
-  top: -51px
-  transition: top 3s ease-out
-  &.bar-enter-active
-    top: 0px
-
-.bar-leave
-  top: 0px
   transition: top .3s ease-out
-  &.bar-leave-active
-    top: -51px
+  &.is-visible
+    top: 0px;
 
 .search-input
   width: 260px

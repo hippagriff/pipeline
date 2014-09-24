@@ -19,15 +19,15 @@ Search = React.createClass
     {div, ul, input, button} = React.DOM
     {results} = @state.stores.patientSearch
 
-    console.log @state.showSearchBar
+    #console.log @state.showSearchBar
 
-    searchBar = []
-    if @state.showSearchBar
-      searchBar.push(SearchBar {
-        key: 'searchBar'
-        handleLogout: @handleLogout
-        executeSearch: @executeSearch
-      }, [])
+    #searchBar = []
+    #if @state.showSearchBar
+    #  searchBar.push(SearchBar {
+    #    key: 'searchBar'
+    #    handleLogout: @handleLogout
+    #    executeSearch: @executeSearch
+    #  }, [])
 
     patients = []
     patients.push((SearchResult {
@@ -39,10 +39,11 @@ Search = React.createClass
       className: 'search-container'
       id: 'search'
     }, [
-      ReactCSSTransitionGroup {
-        transitionName: 'bar'
-        key: 'searchBarTrans'
-      }, searchBar
+      SearchBar {
+        key: 'searchBar'
+        handleLogout: @handleLogout
+        executeSearch: @executeSearch
+      }, []
       ul {
         className: 'results-container'
         key: 'results'
