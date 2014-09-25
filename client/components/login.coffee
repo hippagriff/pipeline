@@ -25,7 +25,7 @@ Login = React.createClass
     # Login spinner
     spinner = []
     if @state.stores.user.loading
-      spinner.push(new Spinner(
+      spinner.push(Spinner(
           color: '#336699'
         )
       )
@@ -42,13 +42,13 @@ Login = React.createClass
         input {
           type: 'text'
           ref: 'username'
-          placeholder: 'Username'
+          placeholder: T('Username')
           onKeyPress: @handleLogin
         }
         input {
           type: 'password'
           ref: 'password'
-          placeholder: 'Password'
+          placeholder: T('Password')
           onKeyPress: @handleLogin
         }
         button {

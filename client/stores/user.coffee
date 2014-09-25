@@ -4,12 +4,13 @@ User = Flux.createStore
   
   data: null
   requestedNav: null
-  isLoading: false
+  isLoading: null
 
   setLoginData: (data) ->
     @data = {}
     @data.user = data
     @loginUser()
+    @isLoading = false
     @emit 'change'
   
 
@@ -29,6 +30,7 @@ User = Flux.createStore
 
   activeRequest: (status) ->
     @isLoading = status
+    @emit 'change'
 
   
   isLoggedIn: ->
