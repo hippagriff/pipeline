@@ -1,0 +1,11 @@
+{
+  "locales": [
+    { "code": "en", "name": "English" },
+    { "code": "es", "name": "Español" }
+  ],
+
+  "strings": [
+    { "en": "Username", "es": "Nombre de usuario" },
+    { "en": "Password", "es": "Contraseña" },
+  ]
+}

@@ -6,7 +6,7 @@ routes = require './routes'
 extractor = require 'ez-localize/extractor'
 
 ezlocalize = require 'ez-localize'
-localizations = require '../fixtures/data/localizations.json'
+localizations = require './strings/localizations.json'
 
 localizer = new ezlocalize.Localizer(localizations, "en") # Put language code here
 
