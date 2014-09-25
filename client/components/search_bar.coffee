@@ -52,6 +52,7 @@ SearchBar = React.createClass
   executeSearch: (e) ->
     searchTerm = @refs.searchField.getDOMNode().value
     @props.executeSearch(searchTerm)
+    @setState({searchTerm})
 
   handleLogout: (e) ->
     @props.handleLogout()

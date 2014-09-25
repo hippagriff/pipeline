@@ -1,5 +1,4 @@
-React = require 'react/addons'
-ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
+React = require 'react'
 {Flux} = require 'delorean.js'
 authCheck = require '../mixins/authcheck'
 
@@ -16,18 +15,8 @@ Search = React.createClass
   mixins: [authCheck, Flux.mixins.storeListener]
   
   render: ->
-    {div, ul, input, button} = React.DOM
+    {div, ul} = React.DOM
     {results} = @state.stores.patientSearch
-
-    #console.log @state.showSearchBar
-
-    #searchBar = []
-    #if @state.showSearchBar
-    #  searchBar.push(SearchBar {
-    #    key: 'searchBar'
-    #    handleLogout: @handleLogout
-    #    executeSearch: @executeSearch
-    #  }, [])
 
     patients = []
     patients.push((SearchResult {
@@ -51,21 +40,9 @@ Search = React.createClass
     ]
 
 
-  getInitialState: -> 
-    {
-      showSearchBar: no
-    }
-
-  componentDidMount: -> 
-    @setState({showSearchBar: yes})
-
   handleLogout: -> userActions.attemptLogout('')
 
-  executeSearch: (searchTerm) ->
-    searchActions.executeSearch(searchTerm)
-    @setState({searchTerm})
-
-
+  executeSearch: (searchTerm) -> searchActions.executeSearch(searchTerm)
 
 
 
