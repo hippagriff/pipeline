@@ -16,7 +16,7 @@ Login = React.createClass
   displayName: 'login'
 
   render: ->
-    {div, button, input} = React.DOM
+    {div, button, input, ul, li} = React.DOM
 
     
     logo = []
@@ -51,6 +51,13 @@ Login = React.createClass
           transitionName: 'fields'
           key: 'fieldsTrans'
         }, fields
+      ]
+      ul {
+        className: 'footer'
+      }, [
+        li {}, ['Forgot Username/Password?']
+        li {}, ['Privacy Policy']
+        li {}, ["Copyright © #{new Date().getYear()} AegleCare, Inc"]
       ]
     ]
 
