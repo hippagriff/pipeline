@@ -9,6 +9,8 @@ UserDispatcher = Flux.createDispatcher
 
   logoutUser: (message = '') -> @dispatch('user-logout', message)
 
+  activeRequest: (status) -> 
+    @dispatch('request-event', status)
 
 
 module.exports = UserDispatcher

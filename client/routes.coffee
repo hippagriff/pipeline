@@ -1,12 +1,12 @@
-# Librarues
+# Libraries
 Router = require('react-router');
 {Route, DefaultRoute, Routes, Link, NotFoundRoute, Redirect} = Router
 
-# Component Route Hanlders
+# Component Route Handlers
 Search = require './components/search'
 Login = require './components/login'
 
-# Dispathers
+# Dispatchers
 userDispatcher = require './dispatchers/user'
 searchDispatcher = require './dispatchers/patient_search'
 

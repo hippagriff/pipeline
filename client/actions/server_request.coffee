@@ -1,4 +1,4 @@
-requestDispatcher = require '../dispatchers/server_request'
+userDispatcher = require '../dispatchers/user'
 
 
 module.exports = class Request
@@ -94,4 +94,4 @@ module.exports = class Request
     return @
 
   requestEventChange: (status) ->
-    requestDispatcher.setStatus(status)
+    userDispatcher.activeRequest(status)

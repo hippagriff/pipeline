@@ -4,6 +4,7 @@ User = Flux.createStore
   
   data: null
   requestedNav: null
+  isLoading: false
 
   setLoginData: (data) ->
     @data = {}
@@ -15,13 +16,19 @@ User = Flux.createStore
   actions:
     'user-login': 'setLoginData'
     'user-logout': 'logoutUser'
+    'request-event': 'activeRequest'
 
 
   getState: ->
     {
       data: @data?.user or {}
       isLoggedIn: @isLoggedIn()
+      loading: @isLoading
     }
+
+
+  activeRequest: (status) ->
+    @isLoading = status
 
   
   isLoggedIn: ->
