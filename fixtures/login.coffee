@@ -4,4 +4,7 @@ module.exports = (req, res) ->
   username = req.get('username')
   password = req.get('password')
   if not username? or not password? then res.status(401).end()
-  else res.send(data)
+  else 
+    setTimeout ->
+      res.send(data)
+    , 2000

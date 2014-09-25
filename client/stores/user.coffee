@@ -4,24 +4,33 @@ UserStore = Flux.createStore
   
   data: null
   requestedNav: null
+  isLoading: null
 
   setLoginData: (data) ->
     @data = {}
     @data.user = data
     @loginUser()
+    @isLoading = false
     @emit 'change'
   
 
   actions:
     'user-login': 'setLoginData'
     'user-logout': 'logoutUser'
+    'request-event': 'activeRequest'
 
 
   getState: ->
     {
       data: @data?.user or {}
       isLoggedIn: @isLoggedIn()
+      loading: @isLoading
     }
+
+
+  activeRequest: (status) ->
+    @isLoading = status
+    @emit 'change'
 
   
   isLoggedIn: ->

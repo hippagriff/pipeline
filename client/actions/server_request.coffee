@@ -1,3 +1,6 @@
+userDispatcher = require '../dispatchers/user'
+
+
 module.exports = class Request
   defaults:
     url: ''
@@ -29,6 +32,8 @@ module.exports = class Request
   
   start: ->
     {method, data, headers, url, async, timeout, onTimeout, error, success, authenticate} = @options
+
+    @requestEventChange(true)
           
     queryParam = if authenticate then "?authToken=#{@authToken}" else ''
 
@@ -74,13 +79,19 @@ module.exports = class Request
             @errorCB?(xmlHttp.status, xmlHttp)
             return
             
-          # Run any supplid callbacl methods
+          # Run any supplied callback methods
           success?(responseData)
           @doneCB?(responseData)
           @thenCB?(responseData)
+
+          @requestEventChange(false)
+
           
     # Send the request
     if method is 'PUT' or method is 'POST' then xmlHttp.send( JSON.stringify(data) )
     else xmlHttp.send()
 
     return @
+
+  requestEventChange: (status) ->
+    userDispatcher.activeRequest(status)

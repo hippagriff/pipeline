@@ -14,14 +14,14 @@ LoginFields = React.createClass
       input {
         type: 'text'
         ref: 'username'
-        placeholder: 'Username'
+        placeholder: T 'Username'
         onKeyPress: @handleLogin
         key: 'username'
       }
       input {
         type: 'password'
         ref: 'password'
-        placeholder: 'Password'
+        placeholder: T 'Password'
         onKeyPress: @handleLogin
         key: 'password'
       }

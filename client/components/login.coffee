@@ -1,12 +1,18 @@
+# Libs
 React = require 'react/addons'
 ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 {Flux} = require 'delorean.js'
 Router = require 'react-router'
 
-LoginFields = require './login_fields'
-
+# Actions
 userActions = require '../actions/user'
+
+# Stores
 user = require '../stores/user'
+
+# Components
+LoginFields = require './login_fields'
+Spinner = require './spinner'
 
 
 Login = React.createClass
@@ -33,12 +39,23 @@ Login = React.createClass
         key: 'fields'
       }, []
     
+
+    spinner = []
+    if @state.stores.user.loading
+      spinner.push(Spinner(
+          color: '#336699'
+        )
+      )
+    
     
     div {
       className: 'login-container'
       id: 'login'
       key: 'login-container'
     }, [
+      div { 
+        className: "login-spinner"
+      }, spinner
       div {
         className: 'form-container'
         key: 'form-container'
