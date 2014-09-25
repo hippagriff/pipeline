@@ -6,10 +6,10 @@ _ = require 'lodash'
 Spinner = React.createClass
 
   defaults:
-    lines: 12 # The number of lines to draw
+    lines: 10 # The number of lines to draw
     length: 5 # The length of each line
-    width: 3 # The line thickness
-    radius: 8 # The radius of the inner circle
+    width: 2 # The line thickness
+    radius: 4 # The radius of the inner circle
     corners: 1 # Corner roundness (0..1)
     rotate: 0 # The rotation offset
     direction: 1 # 1: clockwise, -1: counterclockwise

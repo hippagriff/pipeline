@@ -7,4 +7,4 @@ module.exports = (req, res) ->
   else 
     setTimeout ->
       res.send(data)
-    , 2000
+    , 1500

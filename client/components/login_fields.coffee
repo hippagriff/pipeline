@@ -1,12 +1,25 @@
 React = require 'react/addons'
+{Flux} = require 'delorean.js'
+Spinner = require './spinner'
 
 
 LoginFields = React.createClass
   
   displayName: 'loginFields'
 
+  mixins: [Flux.mixins.storeListener]
+
   render: ->
     {div, button, input} = React.DOM
+
+    console.log @state
+
+    spinner = []
+    if @state.stores.user.loading
+      spinner.push(Spinner(
+          color: 'rgb(255,255,255)'
+        )
+      )
 
     div {
         className: 'fields'
@@ -29,6 +42,9 @@ LoginFields = React.createClass
         onClick: @handleLogin
         key: 'loginbutton'
       }, ['→']
+      div { 
+        className: "login-spinner"
+      }, spinner
     ]
 
   componentWillUnmount: ->
