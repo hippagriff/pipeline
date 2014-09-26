@@ -2,7 +2,34 @@ express = require 'express'
 favicon = require 'serve-favicon'
 errorhandler = require 'errorhandler'
 http = require 'http'
+https = require 'https'
+httpProxy = require 'http-proxy'
 path = require 'path'
+
+# Proxy setup
+proxyTarget = require './proxy_target'
+
+proxyConfig =
+  changeOrigin: true
+  target: proxyTarget
+
+# Check for HTTPS
+if proxyTarget.https
+  proxyConfig.agent = https.globalAgent
+  proxyConfig.headers =
+    host: proxyTarget.host
+
+# Create the proxy server
+proxy = httpProxy.createProxyServer(proxyConfig)
+
+# Proxy error handling
+proxy.on('error', ->
+  console.log('proxyError', arguments[0])
+)
+
+# Proxy middleware
+proxyHandler = (req, res) ->
+  proxy.web(req, res)
 
 app = express()
 server = http.createServer(app)
@@ -28,6 +55,12 @@ if env is 'development'
 
   # Mock API 
   require('./fixtures/')(app)
+
+  # Fixes SSL Cert Issue `Unable To Verify Leaf Signature`
+  # process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+
+  # Proxy
+  app.all('/api*', proxyHandler)
   
   # Load all static files under the route /assets
   app.use('/client', express['static'](path.join(__dirname, 'client')))
