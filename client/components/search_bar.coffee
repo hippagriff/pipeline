@@ -8,6 +8,7 @@ SearchBar = React.createClass
     {div, button, input} = React.DOM
 
     searchClearClass = 'search-clear'
+    console.log @state.searchTerm.length
     if @state.searchTerm.length is 0 then searchClearClass += ' is-hidden'
 
     className = 'bar'
@@ -64,7 +65,7 @@ SearchBar = React.createClass
 
   clearSearch: (e) ->
     @refs.searchField.getDOMNode().value = ''
-    @props.executeSearch('');
+    @executeSearch(e)
 
 
 
