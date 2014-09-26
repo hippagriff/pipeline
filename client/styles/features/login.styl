@@ -1,7 +1,8 @@
 
 &.login-container
   absPos(top: 0, right: 0, bottom: 0, left: 0)
-  background-image: linear-gradient(top, startBlue, endBlue)
+  background-image: linear-gradient(to bottom, startBlue, endBlue)
+  background-color: startBlue
   color: white
 
 .logo
@@ -34,13 +35,29 @@
   overflow: hidden
 
 .fields
-  absPos(top: 50px, left: 125px)
+  absPos(top: 50px, left: 125px, right: 0)
   height: 40px
-  width: 465px
   input
     font-size: 18px
   button
     font-size: 17px
+
+.username
+  absPos()
+  width: 195px
+  
+.password
+  width: 195px
+  absPos(left: 210px)
+
+.login-btn
+  absPos(top: 0px, left: 415px)
+  padding: 3px
+
+.login-spinner
+  absPos(top: 8px, left: 455px)
+  width: 20px
+  height: 20px
   
 .fields-enter
   left: 1600px
@@ -53,11 +70,6 @@
   transition: left .3s ease-out
   &.fields-leave-active
     left: 1600px
-
-.login-spinner
-  absPos(top: 8px, right: 0px)
-  width: 20px
-  height: 20px
 
 
 .footer

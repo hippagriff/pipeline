@@ -1,20 +1,32 @@
 &.search-container
   absPos(0, 0, 0, 0)
   overflow: hidden
-  background-image: linear-gradient(top, startBlue, endBlue)
+  background-image: linear-gradient(to bottom, startBlue, endBlue)
+  background-color: startBlue
 
 .bar
   absPos(top: -51px, right: 0px, left: 0px)
   height: 50px
-  background-image: linear-gradient(top, searchStart, searchEnd)
+  background-image: linear-gradient(to bottom, searchStart, searchEnd)
   border-bottom: 1px inset lightMediumGray
   transition: top .3s ease-out
   &.is-visible
     top: 0px;
 
+.off-canvas-btn
+  absPos(top: 10px, left: 5px)
+  width: 30px
+  height: 30px
+  background-image: url('../images/burger.svg')
+  background-position: 2px 6px
+  background-repeat: no-repeat
+  background-size: 25px
+  border: none
+
 .search-input
   width: 260px
-  absPos(top: 15px, left: 15px)
+  absPos(top: 15px, left: 45px)
+  
 
   &:focus
     background: none
@@ -22,12 +34,12 @@
 .search-clear
   width: 14px
   height: 14px
-  absPos(top: 21px, left: 265px)
+  absPos(top: 21px, left: 295px)
   border-radius: 7px
   background-image: url('../images/white-x.svg')
   background-position: 2px 3px
   background-repeat: no-repeat
-  background-size: 8px;
+  background-size: 8px
   color: white
   border: none
   

@@ -16,6 +16,11 @@ SearchBar = React.createClass
     div {
         className: className
     }, [
+      button {
+        className: 'off-canvas-btn'
+        key: 'off-canvas-btn'
+        title: 'Show Menu'
+      }
       input {
         ref:'searchField'
         className: 'search-input'
