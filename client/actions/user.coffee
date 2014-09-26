@@ -11,6 +11,7 @@ module.exports =
         username: username
         password: password
       authenticate: off
+      dispatcher: userDispatcher
     ).done(@setLoginData).error(->
       console.log 'error'
     )
