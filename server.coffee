@@ -56,6 +56,9 @@ if env is 'development'
   # Mock API 
   require('./fixtures/')(app)
 
+  # Fixes SSL Cert Issue `Unable To Verify Leaf Signature`
+  # process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+
   # Proxy
   app.all('/api*', proxyHandler)
   
