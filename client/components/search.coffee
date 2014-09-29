@@ -9,7 +9,6 @@ SearchBar = require './search_bar'
 SearchResult = require './search_result_patient'
 
 
-
 Search = React.createClass
 
   mixins: [authCheck, Flux.mixins.storeListener]
@@ -31,6 +30,7 @@ Search = React.createClass
     div {
       className: className
       id: 'search'
+      onClick: @toggleMenu
     }, [
       SearchBar {
         key: 'searchBar'
@@ -48,6 +48,10 @@ Search = React.createClass
   handleLogout: -> userActions.attemptLogout('')
 
   executeSearch: (searchTerm) -> searchActions.executeSearch(searchTerm)
+
+  toggleMenu: ->
+    {menuIsOpen, toggleMenu} = @props
+    if menuIsOpen then toggleMenu()
 
 
 
