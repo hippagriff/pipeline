@@ -62,7 +62,7 @@ Login = React.createClass
       }, [
         li {}, ['Forgot Username/Password?']
         li {}, ['Privacy Policy']
-        li {}, ["Copyright © #{new Date().getYear()} AegleCare, Inc"]
+        li {}, ["Copyright © #{new Date().getFullYear()} AegleCare, Inc"]
       ]
     ]
 
