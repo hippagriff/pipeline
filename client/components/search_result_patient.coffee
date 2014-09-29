@@ -25,15 +25,18 @@ PatientSearchResult = React.createClass
     }, [
       div {
         className: 'search-patient-picture'
+        key: 'picture'
       }
       div {
         className: 'search-patient-name'
+        key: 'name'
       }, [fullName]
       div {
         className: 'search-patient-details'
+        key: 'details'
       }, [
         "mrn: #{mrn}"
-        br {}
+        br {key: 'br1'}
         "#{YO} YO, #{gender}"
       ]
     ]

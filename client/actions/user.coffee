@@ -1,4 +1,6 @@
 userDispatcher = require '../dispatchers/user'
+searchDispatcher = require '../dispatchers/patient_search'
+
 Request = require './server_request'
 Router = require 'react-router'
 
@@ -29,4 +31,6 @@ module.exports =
       console.log 'error'
     )
 
-  logoutUser: (message) -> userDispatcher.logoutUser(message)
+  logoutUser: (message) -> 
+    searchDispatcher.clearData()
+    userDispatcher.logoutUser(message)
