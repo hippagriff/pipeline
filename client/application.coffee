@@ -8,15 +8,26 @@ Application = React.createClass
 
   render: ->
     {div} = React.DOM
-
-    console.log @props
+    {menuIsOpen} = @state
 
     div {
       className: 'container'
     }, [
-      Menu {}
-      @props.activeRouteHandler {}
+      Menu {menuIsOpen}
+      @props.activeRouteHandler {
+        menuIsOpen
+        toggleMenu: @toggleMenu
+      }
     ]
+
+  getInitialState: ->
+    {
+      menuIsOpen: no
+    }
+
+  toggleMenu: ->
+    @setState {menuIsOpen: not @state.menuIsOpen}
+
 
 module.exports = Application
 

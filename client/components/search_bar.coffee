@@ -8,7 +8,6 @@ SearchBar = React.createClass
     {div, button, input} = React.DOM
 
     searchClearClass = 'search-clear'
-    console.log @state.searchTerm.length
     if @state.searchTerm.length is 0 then searchClearClass += ' is-hidden'
 
     className = 'bar'
@@ -21,6 +20,7 @@ SearchBar = React.createClass
         className: 'off-canvas-btn'
         key: 'off-canvas-btn'
         title: 'Show Menu'
+        onClick: @props.toggleMenu
       }
       input {
         ref:'searchField'

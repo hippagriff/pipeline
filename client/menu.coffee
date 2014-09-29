@@ -8,8 +8,11 @@ Menu = React.createClass
   render: ->
     {div} = React.DOM
 
+    className = 'menu'
+    if @props.menuIsOpen then className += ' menu-open'
+
     div {
-      className: 'menu'
+      className: className
     }, []
 
 
