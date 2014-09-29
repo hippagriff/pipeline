@@ -27,3 +27,7 @@ module.exports = (app, server) ->
       timestamp: new Date().getTime()
     })
   )
+
+  app.get('*', (req, res) ->
+    res.redirect('/')
+  )

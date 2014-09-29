@@ -16,7 +16,11 @@ Search = React.createClass
   
   render: ->
     {div, ul} = React.DOM
+    {menuIsOpen, toggleMenu} = @props
     {results} = @state.stores.patientSearch
+
+    className = 'search-container'
+    if menuIsOpen then className += ' menu-open'
 
     patients = []
     patients.push((SearchResult {
@@ -25,13 +29,14 @@ Search = React.createClass
     }, [])) for patient in results
 
     div {
-      className: 'search-container'
+      className: className
       id: 'search'
     }, [
       SearchBar {
         key: 'searchBar'
         handleLogout: @handleLogout
         executeSearch: @executeSearch
+        toggleMenu
       }, []
       ul {
         className: 'results-container'

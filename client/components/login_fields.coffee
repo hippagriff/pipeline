@@ -12,8 +12,6 @@ LoginFields = React.createClass
   render: ->
     {div, button, input} = React.DOM
 
-    console.log @state
-
     spinner = []
     if @state.stores.user.loading
       spinner.push(Spinner(
@@ -25,6 +23,7 @@ LoginFields = React.createClass
         className: 'fields'
     }, [
       input {
+        className: 'username'
         type: 'text'
         ref: 'username'
         placeholder: T 'Username'
@@ -32,6 +31,7 @@ LoginFields = React.createClass
         key: 'username'
       }
       input {
+        className: 'password'
         type: 'password'
         ref: 'password'
         placeholder: T 'Password'
@@ -39,6 +39,7 @@ LoginFields = React.createClass
         key: 'password'
       }
       button {
+        className: 'login-btn'
         onClick: @handleLogin
         key: 'loginbutton'
       }, ['→']

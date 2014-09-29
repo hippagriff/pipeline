@@ -3,6 +3,19 @@ body
   font-family: "HelveticaNeue", Helvetica, Arial, sans-serif
   overflow: hidden
 
+.container
+  absPos(top: 0, right: 0, bottom: 0, left: 0)
+  overflow: hidden
+
+.menu
+  absPos(top: 0, bottom: 0, left: -300px)
+  width: 300px
+  oveflow-y: auto
+  background: subtleGreen
+  transition: left .2s ease-out
+  &.menu-open
+    left: 0px
+
 input
   padding: 3px
   font-size: 14px
@@ -11,20 +24,15 @@ input
   outline: none
   background: none
   border-bottom: 1px solid white
-  //border-top-left-radius: 5px
-  //border-top-right-radius: 5px
-  transition: background .4s ease-out
   color: white
 
-  //&:focus
-    //background: white
 
 button
   border: none
   outline: none
   background: none
   border-bottom: 1px solid white
-  height: 27px
+  height: 28px
   font-size: 14px
   color: white
   cursor: pointer
