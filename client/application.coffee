@@ -13,10 +13,14 @@ Application = React.createClass
     div {
       className: 'container'
     }, [
-      Menu {menuIsOpen}
+      Menu {
+        menuIsOpen
+        key: 'menu'
+      }
       @props.activeRouteHandler {
         menuIsOpen
         toggleMenu: @toggleMenu
+        key: 'activeRouteHandler'
       }
     ]
 
