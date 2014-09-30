@@ -1,5 +1,3 @@
-userDispatcher = require '../dispatchers/user'
-
 
 module.exports = class Request
   defaults:
@@ -13,6 +11,7 @@ module.exports = class Request
     error: null # Callback for an error
     onTimeout: null # Callback for a timeout
     authenticate: on
+    dispatcher: null
     
   
   constructor: (@options) ->
@@ -63,6 +62,7 @@ module.exports = class Request
       # Request is complete
       if xmlHttp.readyState is 4
         clearTimeout requestTimer
+        @requestEventChange false
         
         # Failed Request
         unless xmlHttp.status is 200
@@ -84,8 +84,6 @@ module.exports = class Request
           @doneCB?(responseData)
           @thenCB?(responseData)
 
-          @requestEventChange(false)
-
           
     # Send the request
     if method is 'PUT' or method is 'POST' then xmlHttp.send( JSON.stringify(data) )
@@ -94,4 +92,4 @@ module.exports = class Request
     return @
 
   requestEventChange: (status) ->
-    userDispatcher.activeRequest(status)
+    @options.dispatcher?.activeRequest?(status)

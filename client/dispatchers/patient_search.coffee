@@ -8,4 +8,7 @@ PatientSearchDispatcher = Flux.createDispatcher
   setSearchResults: (data) -> 
     @dispatch('search-results', data)
 
+  clearData: ->
+    @dispatch('search-clear')
+
 module.exports = PatientSearchDispatcher

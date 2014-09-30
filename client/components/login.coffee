@@ -42,7 +42,6 @@ Login = React.createClass
     div {
       className: 'login-container'
       id: 'login'
-      key: 'login-container'
     }, [
       div {
         className: 'form-container'
@@ -59,10 +58,11 @@ Login = React.createClass
       ]
       ul {
         className: 'footer'
+        key: 'footer'
       }, [
-        li {}, ['Forgot Username/Password?']
-        li {}, ['Privacy Policy']
-        li {}, ["Copyright © #{new Date().getYear()} AegleCare, Inc"]
+        li {key: 'forgot'}, ['Forgot Username/Password?']
+        li {key: 'privacy'}, ['Privacy Policy']
+        li {key: 'copyright'}, ["Copyright © #{new Date().getFullYear()} AegleCare, Inc"]
       ]
     ]
 

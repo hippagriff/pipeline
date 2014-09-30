@@ -16,6 +16,12 @@ SearchBar = React.createClass
     div {
         className: className
     }, [
+      button {
+        className: 'off-canvas-btn'
+        key: 'off-canvas-btn'
+        title: 'Show Menu'
+        onClick: @props.toggleMenu
+      }
       input {
         ref:'searchField'
         className: 'search-input'
@@ -59,7 +65,7 @@ SearchBar = React.createClass
 
   clearSearch: (e) ->
     @refs.searchField.getDOMNode().value = ''
-    @props.executeSearch('');
+    @executeSearch(e)
 
 
 

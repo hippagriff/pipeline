@@ -2,10 +2,13 @@
 
 PatientSearch = Flux.createStore
   
-  data: null
-
   actions:
     'search-results': 'setSearchResults'
+    'search-clear': 'clearData'
+
+  initialize: ->
+    @data =
+      results: []
 
 
   setSearchResults: (data) ->
@@ -14,10 +17,11 @@ PatientSearch = Flux.createStore
     @emit 'change'
 
 
-  getState: ->
-    {
-      results: @data?.results or []
-    }
+  getState: -> @data
+
+  clearData: ->
+    @data =
+      results: []
 
 
 
