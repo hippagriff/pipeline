@@ -45,13 +45,9 @@ gulp.task('js', ->
     entries: ['./client/start.coffee']
     extensions: ['.coffee']
   )
-
-  # Apply transforms before compressing
-  .transform('coffeeify')
   .bundle()
   .pipe(source('bundle.js'))
   .pipe(buffer())
-
   # Need to keep ascii_only: true or else Regex errors will be thrown
   .pipe(uglify({ output: { ascii_only: true } }))
 
