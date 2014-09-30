@@ -1,4 +1,4 @@
-React = require 'react/addons'
+React = require 'react'
 {Flux} = require 'delorean.js'
 Spinner = require './spinner'
 
@@ -27,7 +27,7 @@ LoginFields = React.createClass
         className: 'username'
         type: 'text'
         ref: 'username'
-        placeholder: T 'Username'
+        placeholder: 'Username'
         onKeyPress: @handleLogin
         key: 'username'
       }
@@ -35,7 +35,7 @@ LoginFields = React.createClass
         className: 'password'
         type: 'password'
         ref: 'password'
-        placeholder: T 'Password'
+        placeholder: 'Password'
         onKeyPress: @handleLogin
         key: 'password'
       }

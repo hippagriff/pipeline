@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npm run client-watch & npm run server-start",
     "server-start": "./node_modules/.bin/node-supervisor -x coffee --watch server,fixtures,server.coffee server.coffee",
-    "client-watch": "./node_modules/.bin/watchify -t coffeeify client/start.coffee -o client/bundle.js --extension=.coffee --verbose"
+    "client-watch": "./node_modules/.bin/watchify client/start.coffee -o client/bundle.js --extension=.coffee --verbose",
+    "build": "export NODE_ENV=production & gulp test-build"
   },
   "dependencies": {
     "delorean.js": "git+https://github.com/deloreanjs/delorean.git",
@@ -23,6 +24,7 @@
     "ez-localize": "~0.3.7"
   },
   "devDependencies": {
+    "aliasify": "^1.4.0",
     "autoprefixer-stylus": "~0.3.0",
     "browserify": "~5.10.1",
     "coffee-script": "~1.7.1",
@@ -39,5 +41,19 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "~1.0.2"
+  },
+  "aliasify": {
+    "aliases": {
+      "react": "react/addons",
+      "moment": "moment/min/moment.min",
+      "spin": "spin/dist/spin.min",
+      "lodash": "lodash/dist/lodash.compat.min"
+    }
+  },
+  "browserify": {
+    "transform": [
+      "coffeeify",
+      "aliasify"
+    ]
   }
 }
