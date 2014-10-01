@@ -6,7 +6,8 @@
     "start": "npm run client-watch & npm run server-start",
     "server-start": "./node_modules/.bin/node-supervisor -x coffee --watch server,fixtures,server.coffee server.coffee",
     "client-watch": "./node_modules/.bin/watchify client/start.coffee -o client/bundle.js --extension=.coffee --verbose",
-    "build": "export NODE_ENV=production & gulp test-build"
+    "build": "export NODE_ENV=production & gulp test-build",
+    "test": "jest"
   },
   "dependencies": {
     "delorean.js": "git+https://github.com/deloreanjs/delorean.git",
@@ -36,6 +37,7 @@
     "gulp-stylus": "^1.3.3",
     "gulp-uglify": "^1.0.1",
     "http-proxy": "~1.3.0",
+    "jest-cli": "^0.1.18",
     "stylus": "~0.49.1",
     "supervisor": "~0.6.0",
     "vinyl-buffer": "^1.0.0",
@@ -55,5 +57,10 @@
       "coffeeify",
       "aliasify"
     ]
+  },
+  "jest": {
+    "scriptPreprocessor": "./test/preprocessor.js",
+    "testFileExtensions": ["coffee", "js"],
+    "unmockedModulePathPatterns": ["react"]
   }
 }
