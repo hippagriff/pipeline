@@ -9,10 +9,13 @@
     "build": "export NODE_ENV=production & gulp test-build"
   },
   "dependencies": {
+    "ainojs-animation": "^1.1.5",
+    "ainojs-easing": "^1.0.2",
     "delorean.js": "git+https://github.com/deloreanjs/delorean.git",
     "detect-dom-ready": "~1.0.2",
     "errorhandler": "~1.1.1",
     "express": "~4.8.5",
+    "ez-localize": "~0.3.7",
     "hbs": "~2.7.0",
     "lodash": "~2.4.1",
     "moment": "^2.8.3",
@@ -20,8 +23,7 @@
     "react-router": "^0.7.0",
     "serve-favicon": "~2.1.1",
     "serve-static": "~1.5.3",
-    "spin": "0.0.1",
-    "ez-localize": "~0.3.7"
+    "spin": "0.0.1"
   },
   "devDependencies": {
     "aliasify": "^1.4.0",
@@ -46,8 +48,9 @@
     "aliases": {
       "react": "react/addons",
       "moment": "moment/min/moment.min",
-      "spin": "spin/dist/spin.min",
-      "lodash": "lodash/dist/lodash.compat.min"
+      "lodash": "lodash/dist/lodash.compat.min",
+      "ainojs-animation": "ainojs-animation/dist/animation.min",
+      "ainojs-easing": "ainojs-easing/dist/easing.min"
     }
   },
   "browserify": {

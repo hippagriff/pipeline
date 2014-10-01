@@ -1,13 +1,26 @@
 React = require 'react'
 {Flux} = require 'delorean.js'
 Spinner = require './spinner'
+animationMixin = require '../mixins/animation_mixin'
 
 
 LoginFields = React.createClass
   
   displayName: 'loginFields'
 
-  mixins: [Flux.mixins.storeListener]
+  mixins: [Flux.mixins.storeListener, animationMixin]
+
+  enterStateStart:
+    left: 1600
+  enterStateEnd:
+    left: 125
+  enterEasing: 'easeOut'
+  
+  leaveStateStart:
+    left: 125
+  leaveStateEnd:
+    left: 1600
+  leaveEasing: 'easeIn'
 
   render: ->
     {div, button, input, label} = React.DOM
@@ -22,6 +35,8 @@ LoginFields = React.createClass
 
     div {
         className: 'fields'
+        style:
+          left: @state.left
     }, [
       input {
         className: 'username'
@@ -66,22 +81,27 @@ LoginFields = React.createClass
       ]
     ]
 
-  componentWillUnmount: ->
-    @props.navOut()
 
-  componentDidMount: ->
+  componentDidMount: (done) ->
     usernameField = @refs.username.getDOMNode()
     rememberMe = @refs.remember.getDOMNode()
+    username = window.localStorage.getItem('username')
+
+    if username?
+      usernameField.value = username
+      rememberMe.checked = true
+
+  
+  componentDidEnter: ->
+    usernameField = @refs.username.getDOMNode()
     passwordField = @refs.password.getDOMNode()
     username = window.localStorage.getItem('username')
 
-    setTimeout ->
-      usernameField.focus()
-      if username?
-        usernameField.value = username
-        rememberMe.checked = true
-        passwordField.focus()
-    , 350
+    if username? then passwordField.focus() else usernameField.focus()
+    
+
+  componentDidLeave: ->
+    @props.navOut()
 
 
   handleLogin: (e) ->
