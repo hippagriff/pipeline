@@ -22,12 +22,15 @@ LoginLogo = React.createClass
 
   render: ->
     {div} = React.DOM
+    {left} = @state
 
     div {
       className: 'logo'
       key: 'logo'
       style:
-        left: @state.left
+        transform: "translate(#{left}px, 0) translateZ(0px)"
+        "-webkit-transform": "translate(#{left}px, 0) translateZ(0px)"
+        "-ms-transform": "translate(#{left}px, 0)"
     }, ['AegleCare']
 
 

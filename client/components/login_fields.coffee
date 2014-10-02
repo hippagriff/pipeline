@@ -24,6 +24,7 @@ LoginFields = React.createClass
 
   render: ->
     {div, button, input, label} = React.DOM
+    {left} = @state
 
     spinner = []
     if @state.stores.user.loading
@@ -36,7 +37,9 @@ LoginFields = React.createClass
     div {
         className: 'fields'
         style:
-          left: @state.left
+          transform: "translate(#{left}px, 0) translateZ(0px)"
+          "-webkit-transform": "translate(#{left}px, 0) translateZ(0px)"
+          "-ms-transform": "translate(#{left}px, 0)"
     }, [
       input {
         className: 'username'
