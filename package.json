@@ -63,13 +63,18 @@
     ]
   },
   "jest": {
-    "scriptPreprocessor": "./test/preprocessor.js",
+    "scriptPreprocessor": "./test_preprocessor.js",
     "testFileExtensions": [
       "coffee",
       "js"
     ],
     "unmockedModulePathPatterns": [
       "react"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "coffee"
     ]
   }
 }
