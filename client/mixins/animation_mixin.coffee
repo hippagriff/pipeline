@@ -3,10 +3,14 @@ easing = require 'ainojs-easing'
 _ = require 'lodash'
 
 ###
-  Purpose: Easily add Enter and Leave animations to a React Component (that is a child of ReactTransitionGroup)
+  Purpose: Easily add Enter and Leave animations to a React Component (that is a child of React's TransitionGroup)
   
   The react compnent must have these properties for an Enter Animation
-  
+
+  initialState: object - Only required when there are additional states to those being animated
+                         The initial state of the component, which will have animated properties mixed in
+                         Note: getInitialState on your component is overwritten by this mixin
+
   ENTER ANIMATION PROPS
   enterDuration: number (millisecoinds), defaults to 300
   enterStateStart: object, required, no default
@@ -24,9 +28,9 @@ _ = require 'lodash'
 
 module.exports =
   
-  getInitialState: -> @enterStateStart or {}
+  getInitialState: -> _.extend(@initialState or {}, @enterStateStart or {})
+    
 
-  
   componentWillEnter: (done) ->
     unless @enterStateStart? and @enterStateEnd?
       console?.warn "No 'enter' animation will be performed as @enterStateStart & @enterStateEnd are required. Check #{@displayName} Component."

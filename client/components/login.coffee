@@ -1,6 +1,6 @@
 # Libs
 React = require 'react'
-ReactCSSTransitionGroup = React.addons.TransitionGroup
+{TransitionGroup} = React.addons
 {Flux} = require 'delorean.js'
 Router = require 'react-router'
 
@@ -28,7 +28,7 @@ Login = React.createClass
     logo = []
     fields = []
     if @state.showForm and not @state.stores.user.isLoggedIn
-      logo.push(LoginLogo {})
+      logo.push(LoginLogo {key: 'logo'})
 
       fields.push LoginFields {
         handleLogin: @handleLogin
@@ -45,11 +45,11 @@ Login = React.createClass
         className: 'form-container'
         key: 'form-container'
       }, [
-        ReactCSSTransitionGroup {
+        TransitionGroup {
           transitionName: 'logo'
           key: 'logoTrans'
         }, logo
-        ReactCSSTransitionGroup {
+        TransitionGroup {
           transitionName: 'fields'
           key: 'fieldsTrans'
         }, fields
