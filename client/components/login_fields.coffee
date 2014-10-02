@@ -1,7 +1,7 @@
 React = require 'react'
 {Flux} = require 'delorean.js'
 Spinner = require './spinner'
-
+Input = require('react-input-placeholder')(React)
 
 LoginFields = React.createClass
   
@@ -10,7 +10,7 @@ LoginFields = React.createClass
   mixins: [Flux.mixins.storeListener]
 
   render: ->
-    {div, button, input, label} = React.DOM
+    {div, button, label} = React.DOM
 
     spinner = []
     if @state.stores.user.loading
@@ -23,7 +23,7 @@ LoginFields = React.createClass
     div {
         className: 'fields'
     }, [
-      input {
+      Input {
         className: 'username'
         type: 'text'
         ref: 'username'
@@ -31,7 +31,7 @@ LoginFields = React.createClass
         onKeyPress: @handleLogin
         key: 'username'
       }
-      input {
+      Input {
         className: 'password'
         type: 'password'
         ref: 'password'
@@ -52,7 +52,7 @@ LoginFields = React.createClass
         className: 'remember-me'
         key: 'remember'
       }, [
-        input {
+        Input {
           type: 'checkbox'
           ref: 'remember'
           id: 'remember'
