@@ -1,11 +1,12 @@
 React = require 'react'
+input = require('react-input-placeholder')(React)
 
 SearchBar = React.createClass
   
   displayName: 'searchBar'
 
   render: ->
-    {div, button, input} = React.DOM
+    {div, button} = React.DOM
 
     searchClearClass = 'search-clear'
     if @state.searchTerm.length is 0 then searchClearClass += ' is-hidden'

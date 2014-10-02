@@ -1,7 +1,7 @@
 React = require 'react'
 {Flux} = require 'delorean.js'
 Spinner = require './spinner'
-Input = require('react-input-placeholder')(React)
+input = require('react-input-placeholder')(React)
 
 LoginFields = React.createClass
   
@@ -23,7 +23,7 @@ LoginFields = React.createClass
     div {
         className: 'fields'
     }, [
-      Input {
+      input {
         className: 'username'
         type: 'text'
         ref: 'username'
@@ -31,7 +31,7 @@ LoginFields = React.createClass
         onKeyPress: @handleLogin
         key: 'username'
       }
-      Input {
+      input {
         className: 'password'
         type: 'password'
         ref: 'password'
@@ -52,7 +52,7 @@ LoginFields = React.createClass
         className: 'remember-me'
         key: 'remember'
       }, [
-        Input {
+        input {
           type: 'checkbox'
           ref: 'remember'
           id: 'remember'
