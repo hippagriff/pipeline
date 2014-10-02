@@ -62,7 +62,7 @@ Search = React.createClass
 
 
   startLogout: -> 
-    console.log 'start'
+    @executeSearch('')
     @setState {showBar: no}
   
   
