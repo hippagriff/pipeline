@@ -1,21 +1,42 @@
 React = require 'react'
 input = require('react-input-placeholder')(React)
+animationMixin = require '../mixins/animation_mixin'
+
 
 SearchBar = React.createClass
   
-  displayName: 'searchBar'
+  displayName: 'SearchBar'
+
+  mixins: [animationMixin]
+
+  initialState:
+    searchTerm: ''
+
+  enterStateStart:
+    top: -51
+  enterStateEnd:
+    top: 0
+  enterEasing: 'easeOut'
+
+  leaveStateStart:
+    top: 0
+  leaveStateEnd:
+    top: -51
+  leaveEasing: 'easeIn'
 
   render: ->
     {div, button} = React.DOM
+    {searchTerm, top} = @state
 
     searchClearClass = 'search-clear'
-    if @state.searchTerm.length is 0 then searchClearClass += ' is-hidden'
-
-    className = 'bar'
-    if @state.showBar then className += ' is-visible'
+    if searchTerm.length is 0 then searchClearClass += ' is-hidden'
 
     div {
-        className: className
+      className: 'bar'
+      style:
+        transform: "translate(0, #{top}px) translateZ(0px)"
+        "-webkit-transform": "translate(translate(0, #{top}px) translateZ(0px)"
+        "-ms-transform": "translate(translate(0, #{top}px)"
     }, [
       button {
         className: 'off-canvas-btn'
@@ -41,19 +62,15 @@ SearchBar = React.createClass
           className: 'logout-btn'
           title: 'Logout'
           key: 'logoutBtn'
-          onClick: @handleLogout
+          onClick: @props.startLogout
       }, ['⇥']
     ]
 
-  getInitialState: -> {
-    searchTerm: ''
-    showBar: no
-  }
+  
+  componentDidEnter: -> @refs.searchField.getDOMNode().focus()
 
-  componentDidMount: -> 
-    @refs.searchField.getDOMNode().focus()
 
-    @setState({showBar: yes})
+  componentDidLeave: -> @props.handleLogout()
 
 
   executeSearch: (e) ->
@@ -61,9 +78,11 @@ SearchBar = React.createClass
     @props.executeSearch(searchTerm)
     @setState({searchTerm})
 
+  
   handleLogout: (e) ->
     @props.handleLogout()
 
+  
   clearSearch: (e) ->
     @refs.searchField.getDOMNode().value = ''
     @executeSearch(e)

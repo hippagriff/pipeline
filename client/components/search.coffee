@@ -1,4 +1,5 @@
 React = require 'react'
+{TransitionGroup} = React.addons
 {Flux} = require 'delorean.js'
 authCheck = require '../mixins/authcheck'
 
@@ -10,6 +11,8 @@ SearchResult = require './search_result_patient'
 
 
 Search = React.createClass
+  
+  displayName: 'Search'
 
   mixins: [authCheck, Flux.mixins.storeListener]
   
@@ -20,6 +23,15 @@ Search = React.createClass
 
     className = 'search-container'
     if menuIsOpen then className += ' menu-open'
+
+    bar= []
+    bar.push((SearchBar {
+      key: 'searchBar'
+      handleLogout: @handleLogout
+      startLogout: @startLogout
+      executeSearch: @executeSearch
+      toggleMenu
+    })) if @state.showBar
 
     patients = []
     patients.push((SearchResult {
@@ -32,23 +44,34 @@ Search = React.createClass
       id: 'search'
       onClick: @toggleMenu
     }, [
-      SearchBar {
+      TransitionGroup {
+        transitionName: 'searchBar'
         key: 'searchBar'
-        handleLogout: @handleLogout
-        executeSearch: @executeSearch
-        toggleMenu
-      }, []
+      }, bar
       ul {
         className: 'results-container'
         key: 'results'
       }, patients
     ]
 
+  
+  getInitialState: -> {showBar: no}
 
+
+  componentDidMount: -> @setState {showBar: yes}
+
+
+  startLogout: -> 
+    @executeSearch('')
+    @setState {showBar: no}
+  
+  
   handleLogout: -> userActions.attemptLogout('')
 
+  
   executeSearch: (searchTerm) -> searchActions.executeSearch(searchTerm)
 
+  
   toggleMenu: ->
     {menuIsOpen, toggleMenu} = @props
     if menuIsOpen then toggleMenu()
