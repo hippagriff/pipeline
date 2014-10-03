@@ -49,6 +49,8 @@ LoginFields = React.createClass
         placeholder: 'Username'
         onKeyPress: @handleLogin
         key: 'username'
+        value: @state.username
+        onChange: @updateValues
       }
       input {
         className: 'password'
@@ -57,6 +59,8 @@ LoginFields = React.createClass
         placeholder: 'Password'
         onKeyPress: @handleLogin
         key: 'password'
+        value: @state.password
+        onChange: @updateValues
       }
       button {
         className: 'login-btn'
@@ -106,6 +110,13 @@ LoginFields = React.createClass
 
   componentDidLeave: ->
     @props.navOut()
+
+
+  updateValues: (e) ->
+    @setState(
+      username: @refs.username.getDOMNode().value
+      password: @refs.password.getDOMNode().value
+    )
 
 
   handleLogin: (e) ->

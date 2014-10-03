@@ -13,7 +13,7 @@ searchDispatcher = require './dispatchers/patient_search'
 
 module.exports = (
   Routes {
-    location: 'history'
+    location: 'hash'
   }, [
     Route {
       path: '/'
