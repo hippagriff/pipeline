@@ -4,6 +4,8 @@ Spinner = require './spinner'
 input = require('react-input-placeholder')(React)
 animationMixin = require '../mixins/animation_mixin'
 
+userActions = require '../actions/user'
+
 
 LoginFields = React.createClass
   
@@ -28,12 +30,13 @@ LoginFields = React.createClass
     {left} = @state
 
     spinner = []
-    if @state.stores.user.loading
+    if @state.stores.user.isLoading
       spinner.push(Spinner(
           color: 'rgb(255,255,255)'
           key: 'spinner-container'
         )
       )
+
 
     div {
         className: 'fields'
@@ -49,8 +52,8 @@ LoginFields = React.createClass
         placeholder: 'Username'
         onKeyPress: @handleLogin
         key: 'username'
-        value: @state.username
-        onChange: @updateValues
+        value: @state.stores.user.username
+        onChange: @updateFields
       }
       input {
         className: 'password'
@@ -59,8 +62,8 @@ LoginFields = React.createClass
         placeholder: 'Password'
         onKeyPress: @handleLogin
         key: 'password'
-        value: @state.password
-        onChange: @updateValues
+        value: @state.stores.user.password
+        onChange: @updateFields
       }
       button {
         className: 'login-btn'
@@ -80,7 +83,8 @@ LoginFields = React.createClass
           ref: 'remember'
           id: 'remember'
           key: 'remember-check'
-          onChange: @rememberUser
+          onChange: @updateFields
+          checked: @state.stores.user.rememberMe
         }
         label {
           htmlFor: 'remember'
@@ -88,16 +92,6 @@ LoginFields = React.createClass
         }, ['Remember Me']
       ]
     ]
-
-
-  componentDidMount: (done) ->
-    usernameField = @refs.username.getDOMNode()
-    rememberMe = @refs.remember.getDOMNode()
-    username = window.localStorage.getItem('username')
-
-    if username?
-      usernameField.value = username
-      rememberMe.checked = true
 
   
   componentDidEnter: ->
@@ -112,12 +106,12 @@ LoginFields = React.createClass
     @props.navOut()
 
 
-  updateValues: (e) ->
-    @setState(
+  updateFields: ->
+    userActions.updateFieldData(
       username: @refs.username.getDOMNode().value
       password: @refs.password.getDOMNode().value
     )
-
+    
 
   handleLogin: (e) ->
     if e.type is 'keypress' and e.key isnt 'Enter' then return

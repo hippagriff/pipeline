@@ -7,10 +7,11 @@ UserDispatcher = Flux.createDispatcher
 
   setLoginData: (data) -> @dispatch('user-login', data)
 
+  updateFieldData: (data) -> @dispatch('update-fields', data)
+
   logoutUser: (message = '') -> @dispatch('user-logout', message)
 
-  activeRequest: (status) -> 
-    @dispatch('request-event', status)
+  activeRequest: (status) -> @dispatch('request-event', status)
 
 
 module.exports = UserDispatcher

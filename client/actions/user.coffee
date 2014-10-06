@@ -20,6 +20,7 @@ module.exports =
 
   setLoginData: (data) -> userDispatcher.setLoginData(data)
 
+  updateFieldData: (data) -> userDispatcher.updateFieldData(data)
 
   attemptLogout: (message) ->
     new Request(

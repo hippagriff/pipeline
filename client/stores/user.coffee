@@ -5,6 +5,16 @@ UserStore = Flux.createStore
   data: null
   requestedNav: null
   isLoading: null
+  rememberMe: window.localStorage.getItem('username')?
+  username: null
+  password: null
+
+  actions:
+    'user-login': 'setLoginData'
+    'user-logout': 'logoutUser'
+    'request-event': 'activeRequest'
+    'update-fields': 'updateFieldData'
+
 
   setLoginData: (data) ->
     @data = {}
@@ -12,20 +22,26 @@ UserStore = Flux.createStore
     @loginUser()
     @isLoading = false
     @emit 'change'
-  
-
-  actions:
-    'user-login': 'setLoginData'
-    'user-logout': 'logoutUser'
-    'request-event': 'activeRequest'
 
 
   getState: ->
-    {
+    # Return the state
+    return {
       data: @data?.user or {}
       isLoggedIn: @isLoggedIn()
-      loading: @isLoading
+      isLoading: @isLoading
+      rememberMe: @rememberMe
+      username: @username
+      password: @password
     }
+
+
+  updateFieldData: (data) ->
+    {@username, @password} = data
+
+    if window.localStorage.getItem('username')?
+      @rememberMe = true
+      @emit 'change'
 
 
   activeRequest: (status) ->
