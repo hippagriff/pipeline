@@ -1,5 +1,7 @@
 React = require 'react'
+input = require('react-input-placeholder')(React)
 animationMixin = require '../mixins/animation_mixin'
+
 
 SearchBar = React.createClass
   
@@ -23,7 +25,7 @@ SearchBar = React.createClass
   leaveEasing: 'easeIn'
 
   render: ->
-    {div, button, input} = React.DOM
+    {div, button} = React.DOM
     {searchTerm, top} = @state
 
     searchClearClass = 'search-clear'

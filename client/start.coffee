@@ -1,5 +1,4 @@
 React = require 'react'
-console.log React
 domready = require 'detect-dom-ready'
 
 routes = require './routes'
