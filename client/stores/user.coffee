@@ -6,8 +6,8 @@ UserStore = Flux.createStore
   requestedNav: null
   isLoading: null
   rememberMe: window.localStorage.getItem('username')?
-  username: null
-  password: null
+  username: window.localStorage.getItem('username')
+  password: ''
 
   actions:
     'user-login': 'setLoginData'
@@ -37,11 +37,9 @@ UserStore = Flux.createStore
 
 
   updateFieldData: (data) ->
-    {@username, @password} = data
-
-    if window.localStorage.getItem('username')?
-      @rememberMe = true
-      @emit 'change'
+    {@username, @password, @rememberMe} = data
+    unless @rememberMe then window.localStorage.removeItem('username')
+    @emit 'change'
 
 
   activeRequest: (status) ->

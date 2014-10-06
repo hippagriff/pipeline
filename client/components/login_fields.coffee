@@ -110,6 +110,7 @@ LoginFields = React.createClass
     userActions.updateFieldData(
       username: @refs.username.getDOMNode().value
       password: @refs.password.getDOMNode().value
+      rememberMe: @refs.remember.getDOMNode().checked
     )
     
 
