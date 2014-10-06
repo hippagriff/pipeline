@@ -6,7 +6,7 @@ UserStore = Flux.createStore
   requestedNav: null
   isLoading: null
   rememberMe: window.localStorage.getItem('username')?
-  username: window.localStorage.getItem('username')
+  username: window.localStorage.getItem('username') or ''
   password: ''
 
   actions:
