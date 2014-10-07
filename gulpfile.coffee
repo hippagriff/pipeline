@@ -3,6 +3,7 @@ gulp = require 'gulp'
 rename = require 'gulp-rename'
 uglify = require 'gulp-uglify'
 sequence = require 'gulp-run-sequence'
+insert = require 'gulp-insert'
 stylus = require 'gulp-stylus'
 autoprefixer = require 'autoprefixer-stylus'
 source = require 'vinyl-source-stream'
@@ -41,12 +42,17 @@ gulp.task('css', ->
 
 # JS files
 gulp.task('js', ->
+  # Get the build time
+  build = new Date().getTime()
+
+  # Start the bundling
   browserify(
     entries: ['./client/start.coffee']
     extensions: ['.coffee']
   )
   .bundle()
   .pipe(source('bundle.js'))
+  .pipe(insert.prepend("var buildTime = #{build};"))
   .pipe(buffer())
   # Need to keep ascii_only: true or else Regex errors will be thrown
   .pipe(uglify({ output: { ascii_only: true } }))
