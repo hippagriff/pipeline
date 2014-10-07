@@ -11,11 +11,11 @@ LoginLogo = React.createClass
   enterStateStart:
     left: -600
   enterStateEnd:
-    left: 125
+    left: 0
   enterEasing: 'easeOut'
   
   leaveStateStart:
-    left: 125
+    left: 0
   leaveStateEnd:
     left: -600
   leaveEasing: 'easeIn'
