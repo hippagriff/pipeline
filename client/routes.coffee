@@ -4,8 +4,8 @@ Router = require('react-router');
 
 # Component Route Handlers
 Application = require './application'
-Search = require './components/search'
-Login = require './components/login'
+Search = require './components/search/search'
+Login = require './components/login/login'
 
 
 # Dispatchers

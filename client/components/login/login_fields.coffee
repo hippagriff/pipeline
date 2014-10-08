@@ -1,10 +1,10 @@
 React = require 'react'
 {Flux} = require 'delorean.js'
-Spinner = require './spinner'
+Spinner = require '../widgets/spinner'
 input = require('react-input-placeholder')(React)
-animationMixin = require '../mixins/animation_mixin'
+animationMixin = require '../../mixins/animation_mixin'
 
-userActions = require '../actions/user'
+userActions = require '../../actions/user'
 
 
 LoginFields = React.createClass
