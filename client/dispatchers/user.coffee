@@ -1,9 +1,10 @@
 {Flux} = require 'delorean.js'
-user = require '../stores/user'
+UserStore = require '../stores/user'
+userStore = new UserStore()
 
 UserDispatcher = Flux.createDispatcher
   
-  getStores: -> {user: user}
+  getStores: -> {user: userStore}
 
   setLoginData: (data) -> @dispatch('user-login', data)
 
