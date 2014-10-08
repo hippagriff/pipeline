@@ -16,11 +16,11 @@ LoginFields = React.createClass
   enterStateStart:
     left: 1600
   enterStateEnd:
-    left: 125
+    left: 0
   enterEasing: 'easeOut'
   
   leaveStateStart:
-    left: 125
+    left: 0
   leaveStateEnd:
     left: 1600
   leaveEasing: 'easeIn'

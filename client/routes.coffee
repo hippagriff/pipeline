@@ -7,6 +7,7 @@ Application = require './application'
 Search = require './components/search'
 Login = require './components/login'
 
+
 # Dispatchers
 userDispatcher = require './dispatchers/user'
 searchDispatcher = require './dispatchers/patient_search'

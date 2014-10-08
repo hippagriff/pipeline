@@ -1,5 +1,6 @@
 {Flux} = require 'delorean.js'
-patientSearch = require '../stores/patient_search'
+PatientSearch = require '../stores/patient_search'
+patientSearch = new PatientSearch()
 
 PatientSearchDispatcher = Flux.createDispatcher
   

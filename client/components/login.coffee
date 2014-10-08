@@ -7,8 +7,6 @@ Router = require 'react-router'
 # Actions
 userActions = require '../actions/user'
 
-# Stores
-user = require '../stores/user'
 
 # Components
 LoginFields = require './login_fields'
@@ -18,6 +16,9 @@ LoginLogo = require './login_logo'
 Login = React.createClass
   
   mixins: [Flux.mixins.storeListener]
+
+  statics:
+    requestedNav: null
 
   displayName: 'login'
 
@@ -64,17 +65,26 @@ Login = React.createClass
       ]
     ]
 
+  componentWillMount: -> @checkLoginStatus()
+
   getInitialState: -> {showForm: no}
 
   componentDidMount: -> @setState({showForm: yes})
 
   handleLogin: (username, password) -> userActions.attemptLogin(username, password)
 
-  checkLoginStatus: -> if @state.stores.user.isLoggedIn then @setState({showForm: no})
+  checkLoginStatus: -> 
+    if @state.stores.user.isLoggedIn
+      @setState({showForm: no})
+      @navOut()
 
   navOut: ->
-    if user.store.requestedNav? then user.store.requestedNav.retry()
-    else Router.replaceWith '/search'
+    if Login.requestedNav?
+      requestedNav = Login.requestedNav
+      Login.requestedNav = null
+      requestedNav.retry()
+    else
+      Router.replaceWith '/search'
 
 
 

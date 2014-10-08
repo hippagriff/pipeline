@@ -25,4 +25,4 @@ PatientSearch = Flux.createStore
 
 
 
-module.exports = new PatientSearch()
+module.exports = PatientSearch

@@ -1,9 +1,10 @@
 {Flux} = require 'delorean.js'
+userAuth = require '../user_auth'
+
 
 UserStore = Flux.createStore
   
   data: null
-  requestedNav: null
   isLoading: null
   rememberMe: window.localStorage.getItem('username')?
   username: window.localStorage.getItem('username') or ''
@@ -16,7 +17,11 @@ UserStore = Flux.createStore
     'update-fields': 'updateFieldData'
 
 
+  initialize: ->
+    @setLoginData(userAuth.isLoggedIn())
+
   setLoginData: (data) ->
+    unless data? then return
     @data = {}
     @data.user = data
     @loginUser()
@@ -26,13 +31,13 @@ UserStore = Flux.createStore
 
   getState: ->
     # Return the state
-    return {
+    {
       data: @data?.user or {}
-      isLoggedIn: @isLoggedIn()
       isLoading: @isLoading
       rememberMe: @rememberMe
       username: @username
       password: @password
+      isLoggedIn: userAuth.isLoggedIn()?
     }
 
 
@@ -46,34 +51,6 @@ UserStore = Flux.createStore
     @isLoading = status
     @emit 'change'
 
-  
-  isLoggedIn: ->
-    # If there is no user data, check for it in localStorage
-    if @data is null
-      user = window.localStorage.getItem('user')
-      if user? and not @isTimedOut()
-        @setLoginData(JSON.parse(user))
-        return yes
-      else
-        return no
-    # If there is user data, check for a timeout
-    else if @data?.user?
-      unless @isTimedOut() then return yes
-      else return no
-    # Otherwsie, the user is not logged in
-    else
-      return no
-
-  
-  isTimedOut: ->
-    lastActivity = window.localStorage.getItem('lastActivity')
-    unless lastActivity? then return yes
-    
-    now = new Date().getTime()
-
-    if now - lastActivity < 1000 * 60 * 30 then return no
-    else return yes
-
 
   loginUser: ->
     window.localStorage.setItem('lastActivity', new Date().getTime())
@@ -83,6 +60,9 @@ UserStore = Flux.createStore
   logoutUser: ->
     window.localStorage.removeItem 'lastActivity'
     window.localStorage.removeItem 'user'
+    userAuth.logout()
 
 
-module.exports = new UserStore()
+
+
+module.exports = UserStore
