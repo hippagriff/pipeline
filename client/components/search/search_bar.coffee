@@ -1,6 +1,6 @@
 React = require 'react'
 input = require('react-input-placeholder')(React)
-animationMixin = require '../mixins/animation_mixin'
+animationMixin = require '../../mixins/animation_mixin'
 
 
 SearchBar = React.createClass

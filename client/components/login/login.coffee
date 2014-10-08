@@ -5,7 +5,7 @@ React = require 'react'
 Router = require 'react-router'
 
 # Actions
-userActions = require '../actions/user'
+userActions = require '../../actions/user'
 
 
 # Components

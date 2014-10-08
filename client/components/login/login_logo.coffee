@@ -1,5 +1,5 @@
 React = require 'react'
-animationMixin = require '../mixins/animation_mixin'
+animationMixin = require '../../mixins/animation_mixin'
 
 
 LoginLogo = React.createClass

@@ -1,10 +1,10 @@
 React = require 'react'
 {TransitionGroup} = React.addons
 {Flux} = require 'delorean.js'
-authCheck = require '../mixins/authcheck'
+authCheck = require '../../mixins/authcheck'
 
-userActions = require '../actions/user'
-searchActions = require '../actions/patient_search'
+userActions = require '../../actions/user'
+searchActions = require '../../actions/patient_search'
 
 SearchBar = require './search_bar'
 SearchResult = require './search_result_patient'
