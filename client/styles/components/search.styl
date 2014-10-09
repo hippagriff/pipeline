@@ -22,13 +22,15 @@
   background-size: 25px
   border: none
 
-.search-input
-  width: 260px
+.search-container
+  width: 660px
   absPos(top: 15px, left: 45px)
   
-
   &:focus
     background: none
+
+  .search-input
+    width: 260px
 
 .search-clear
   width: 14px
@@ -45,8 +47,17 @@
   &.is-hidden
     display: none
 
+.search-toggle
+  absPos(top: 11px, left: 700px)
+
+  &.search-simple:before
+    content: '<->'
+
+  &.search-fixed:before
+    content: '>-<'
+
 .logout-btn
-  absPos(top: 12px, right: 15px)
+  absPos(top: 11px, right: 15px)
   font-size: 20px
 
 .results-container

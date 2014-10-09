@@ -1,6 +1,10 @@
 React = require 'react'
 input = require('react-input-placeholder')(React)
+{TransitionGroup} = React.addons
 animationMixin = require '../../mixins/animation_mixin'
+
+SearchSimple =  require './search_fields_simple'
+SearchFixed = require './search_fields_fixed'
 
 
 SearchBar = React.createClass
@@ -11,6 +15,7 @@ SearchBar = React.createClass
 
   initialState:
     searchTerm: ''
+    fixedSearch: false
 
   enterStateStart:
     top: -51
@@ -26,10 +31,28 @@ SearchBar = React.createClass
 
   render: ->
     {div, button} = React.DOM
-    {searchTerm, top} = @state
+    {searchTerm, fixedSearch, top} = @state
 
     searchClearClass = 'search-clear'
     if searchTerm.length is 0 then searchClearClass += ' is-hidden'
+
+    searchToggleClass = 'search-simple'
+
+    if fixedSearch
+      # Toggle the button class
+      searchToggleClass = 'search-fixed'
+
+      # Determine which set of fields to use
+      searchFields =
+        SearchFixed {
+          key: 'searchFixed'
+        }
+    else
+      searchToggleClass = 'search-simple'
+      searchFields =
+        SearchSimple {
+          key: 'searchSimple'
+        }
 
     div {
       className: 'bar'
@@ -43,15 +66,12 @@ SearchBar = React.createClass
         key: 'off-canvas-btn'
         title: 'Show Menu'
         onClick: @props.toggleMenu
-      }
-      input {
-        ref:'searchField'
-        className: 'search-input'
-        type: 'text'
-        placeholder: 'Search Patients'
-        key: 'searchField'
-        onKeyUp: @executeSearch
       }, []
+      TransitionGroup {
+        className: 'search-container'
+        transitionName: 'searchContainer'
+        key: 'searchContainer'
+      }, searchFields
       button {
         className: searchClearClass
         title: 'Clear Search'
@@ -59,33 +79,34 @@ SearchBar = React.createClass
         onClick: @clearSearch
       }, []
       button {
-          className: 'logout-btn'
-          title: 'Logout'
-          key: 'logoutBtn'
-          onClick: @props.startLogout
+        className: 'logout-btn'
+        title: 'Logout'
+        key: 'logoutBtn'
+        onClick: @props.startLogout
       }, ['⇥']
+      button {
+        className: "search-toggle #{searchToggleClass}"
+        title: 'Search toggle'
+        key: 'searchToggle'
+        onClick: @searchToggle
+      }, []
     ]
 
   
-  componentDidEnter: -> @refs.searchField.getDOMNode().focus()
 
 
   componentDidLeave: -> @props.handleLogout()
 
 
-  executeSearch: (e) ->
-    searchTerm = @refs.searchField.getDOMNode().value
-    @props.executeSearch(searchTerm)
-    @setState({searchTerm})
+  searchToggle: ->
+    if @state.fixedSearch then @setState({ fixedSearch: false })
+    else @setState({ fixedSearch: true })
+
 
   
   handleLogout: (e) ->
     @props.handleLogout()
 
-  
-  clearSearch: (e) ->
-    @refs.searchField.getDOMNode().value = ''
-    @executeSearch(e)
 
 
 
