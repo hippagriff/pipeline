@@ -1,10 +1,9 @@
 {Flux} = require 'delorean.js'
 PatientSearch = require '../stores/patient_search'
-patientSearch = new PatientSearch()
 
 PatientSearchDispatcher = Flux.createDispatcher
   
-  getStores: -> {patientSearch: patientSearch}
+  getStores: -> {patientSearch: new PatientSearch()}
 
   setSearchResults: (data) -> 
     @dispatch('search-results', data)

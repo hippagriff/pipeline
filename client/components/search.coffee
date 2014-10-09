@@ -1,4 +1,4 @@
-React = require 'react'
+React = require 'react/addons'
 {TransitionGroup} = React.addons
 {Flux} = require 'delorean.js'
 authCheck = require '../mixins/authcheck'

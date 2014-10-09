@@ -1,4 +1,4 @@
-React = require 'react'
+React = require 'react/addons'
 animationMixin = require '../mixins/animation_mixin'
 
 

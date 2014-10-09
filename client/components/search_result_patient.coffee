@@ -1,4 +1,4 @@
-React = require 'react'
+React = require 'react/addons'
 Router = require 'react-router'
 moment = require 'moment'
 

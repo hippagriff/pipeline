@@ -1,5 +1,5 @@
 # Libs
-React = require 'react'
+React = require 'react/addons'
 {TransitionGroup} = React.addons
 {Flux} = require 'delorean.js'
 Router = require 'react-router'

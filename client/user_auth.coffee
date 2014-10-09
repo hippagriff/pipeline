@@ -1,4 +1,4 @@
-
+localStore = require '../utilities/local_storage'
 
 module.exports =
 
@@ -7,7 +7,7 @@ module.exports =
   isLoggedIn: ->
     if @userData? then return @userData
 
-    storedUser = window.localStorage.getItem('user')
+    storedUser = localStore.getItem('user')
     if storedUser? and not @isTimedOut()
       @userData = JSON.parse(storedUser)
       return @userData
@@ -16,7 +16,7 @@ module.exports =
 
 
   isTimedOut: ->
-    lastActivity = window.localStorage.getItem('lastActivity')
+    lastActivity = localStore.getItem('lastActivity')
     unless lastActivity? then return yes
     
     now = new Date().getTime()
