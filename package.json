@@ -70,7 +70,8 @@
       "js"
     ],
     "unmockedModulePathPatterns": [
-      "react"
+      "react",
+      "react/addons"
     ],
     "moduleFileExtensions": [
       "js",

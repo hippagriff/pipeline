@@ -1,4 +1,4 @@
-React = require 'react'
+React = require 'react/addons'
 {Flux} = require 'delorean.js'
 Spinner = require '../widgets/spinner'
 input = require('react-input-placeholder')(React)
