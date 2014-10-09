@@ -1,4 +1,4 @@
-LoginComponent = require '../components/login'
+LoginComponent = require '../components/login/login'
 userAuth = require '../user_auth'
 
 module.exports = 
