@@ -1,4 +1,4 @@
-localStore = require '../utilities/local_storage'
+localStore = require './utilities/local_storage'
 
 module.exports =
 

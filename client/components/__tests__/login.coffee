@@ -1,5 +1,5 @@
 jest
-  .dontMock('../login.coffee')
+  .dontMock('../login/login.coffee')
   .dontMock('../../stores/user.coffee')
   .mock('../../utilities/local_storage.coffee')
 
@@ -7,7 +7,7 @@ jest
 describe('Login', ->
   it('Login view', ->
     {TestUtils} = require 'react/addons'
-    login = require '../login.coffee'
+    login = require '../login/login.coffee'
 
 
     expect(3).toBe(3)
