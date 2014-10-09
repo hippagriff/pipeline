@@ -36,9 +36,9 @@ SearchSimple = React.createClass
       className: 'search-fields'
       style:
         top: @state.top
-        transform: "translate(#{@state.top}px, 0) translateZ(0px)"
-        "-webkit-transform": "translate(#{@state.top}px, 0) translateZ(0px)"
-        "-ms-transform": "translate(#{@state.top}px, 0)"
+        transform: "translate(0, #{@state.top}px) translateZ(0px)"
+        "-webkit-transform": "translate(0, #{@state.top}px) translateZ(0px)"
+        "-ms-transform": "translate(0, #{@state.top}px)"
     }, [
       input {
         ref:'searchField'
