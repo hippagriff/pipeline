@@ -13,15 +13,15 @@ SearchSimple = React.createClass
     searchTerm: ''
 
   enterStateStart:
-    left: 1600
+    top: -100
   enterStateEnd:
-    left: 0
+    top: 0
   enterEasing: 'easeOut'
   
   leaveStateStart:
-    left: 0
+    top: 0
   leaveStateEnd:
-    left: 1600
+    top: -100
   leaveEasing: 'easeIn'
 
 
@@ -34,6 +34,11 @@ SearchSimple = React.createClass
 
     div {
       className: 'search-fields'
+      style:
+        top: @state.top
+        transform: "translate(#{@state.top}px, 0) translateZ(0px)"
+        "-webkit-transform": "translate(#{@state.top}px, 0) translateZ(0px)"
+        "-ms-transform": "translate(#{@state.top}px, 0)"
     }, [
       input {
         ref:'searchField'
