@@ -98,10 +98,7 @@ SearchBar = React.createClass
   componentDidLeave: -> @props.handleLogout()
 
 
-  searchToggle: ->
-    if @state.fixedSearch then @setState({ fixedSearch: false })
-    else @setState({ fixedSearch: true })
-
+  searchToggle: -> @setState({ fixedSearch: not @state.fixedSearch })
 
   
   handleLogout: (e) ->

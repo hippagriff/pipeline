@@ -12,6 +12,18 @@ SearchFixed = React.createClass
   initialState:
     searchTerm: ''
 
+  enterStateStart:
+    left: 1600
+  enterStateEnd:
+    left: 0
+  enterEasing: 'easeOut'
+  
+  leaveStateStart:
+    left: 0
+  leaveStateEnd:
+    left: 1600
+  leaveEasing: 'easeIn'
+
 
   render: ->
     {div, button} = React.DOM
