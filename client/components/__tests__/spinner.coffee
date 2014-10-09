@@ -1,7 +1,7 @@
 jest.dontMock('../spinner.coffee')
 describe('Spinner', ->
   it('inserts the spinner HTML', ->
-    React = require 'react'
+    React = require 'react/addons'
     TestUtils = React.TestUtils
     spinner = require '../spinner.coffee'
 

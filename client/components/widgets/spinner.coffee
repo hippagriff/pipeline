@@ -1,4 +1,4 @@
-React = require 'react'
+React = require 'react/addons'
 Spin = require 'spin'
 _ = require 'lodash'
 
