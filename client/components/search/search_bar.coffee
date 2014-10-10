@@ -38,7 +38,7 @@ SearchBar = React.createClass
 
     searchToggleClass = 'search-simple'
 
-    if fixedSearch
+    if @state.showForm and fixedSearch
       # Use the fixed search
       searchToggleClass = 'search-fixed'
       searchFields = []
@@ -46,7 +46,7 @@ SearchBar = React.createClass
           key: 'searchFixed'
         }
       )
-    else
+    else if @state.showForm
       # Use the simple search
       searchToggleClass = 'search-simple'
       searchFields = []
@@ -94,6 +94,10 @@ SearchBar = React.createClass
     ]
 
   
+  getInitialState: -> { showForm: no }
+
+
+  componentDidMount: -> @setState({ showForm: yes })
 
 
   componentDidLeave: -> @props.handleLogout()

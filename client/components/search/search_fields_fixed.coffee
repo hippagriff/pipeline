@@ -80,7 +80,7 @@ SearchFixed = React.createClass
     ]
 
   
-  componentDidEnter: -> @refs.firstname.getDOMNode().focus()
+  componentDidEnter: -> @refs.lastname.getDOMNode().focus()
 
 
   # componentDidLeave: -> @props.handleLogout()
