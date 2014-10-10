@@ -50,7 +50,6 @@
   },
   "aliasify": {
     "aliases": {
-      "react": "react/addons",
       "moment": "moment/min/moment.min",
       "lodash": "lodash/dist/lodash.compat.min",
       "ainojs-animation": "ainojs-animation/dist/animation.min",
@@ -70,7 +69,8 @@
       "js"
     ],
     "unmockedModulePathPatterns": [
-      "react"
+      "react",
+      "react/addons"
     ],
     "moduleFileExtensions": [
       "js",

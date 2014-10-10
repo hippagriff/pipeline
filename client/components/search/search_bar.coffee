@@ -1,4 +1,4 @@
-React = require 'react'
+React = require 'react/addons'
 input = require('react-input-placeholder')(React)
 {TransitionGroup} = React.addons
 animationMixin = require '../../mixins/animation_mixin'

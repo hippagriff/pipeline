@@ -1,13 +1,14 @@
 {Flux} = require 'delorean.js'
 userAuth = require '../user_auth'
+localStore = require '../utilities/local_storage'
 
 
 UserStore = Flux.createStore
   
   data: null
   isLoading: null
-  rememberMe: window.localStorage.getItem('username')?
-  username: window.localStorage.getItem('username') or ''
+  rememberMe: localStore.getItem('username')?
+  username: localStore.getItem('username') or ''
   password: ''
 
   actions:
@@ -43,7 +44,7 @@ UserStore = Flux.createStore
 
   updateFieldData: (data) ->
     {@username, @password, @rememberMe} = data
-    unless @rememberMe then window.localStorage.removeItem('username')
+    unless @rememberMe then localStore.removeItem('username')
     @emit 'change'
 
 
@@ -53,13 +54,13 @@ UserStore = Flux.createStore
 
 
   loginUser: ->
-    window.localStorage.setItem('lastActivity', new Date().getTime())
-    window.localStorage.setItem('user', JSON.stringify(@data.user))
+    localStore.setItem('lastActivity', new Date().getTime())
+    localStore.setItem('user', JSON.stringify(@data.user))
 
   
   logoutUser: ->
-    window.localStorage.removeItem 'lastActivity'
-    window.localStorage.removeItem 'user'
+    localStore.removeItem 'lastActivity'
+    localStore.removeItem 'user'
     userAuth.logout()
 
 
