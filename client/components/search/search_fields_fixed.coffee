@@ -13,15 +13,19 @@ SearchFixed = React.createClass
     searchTerm: ''
 
   enterStateStart:
-    top: -100
+    opacity: 0
+    scale: 0
   enterStateEnd:
-    top: 0
+    opacity: 1
+    scale: 1
   enterEasing: 'easeOut'
   
   leaveStateStart:
-    top: 0
+    opacity: 1
+    scale: 1
   leaveStateEnd:
-    top: -100
+    opacity: 0
+    scale: 0
   leaveEasing: 'easeIn'
 
 
@@ -36,9 +40,10 @@ SearchFixed = React.createClass
       className: 'search-fields'
       style:
         top: @state.top
-        transform: "translate(0, #{@state.top}px) translateZ(0px)"
-        "-webkit-transform": "translate(0, #{@state.top}px) translateZ(0px)"
-        "-ms-transform": "translate(0, #{@state.top}px)"
+        opacity: @state.opacity
+        transform: "scale(#{@state.scale})"
+        "-webkit-transform": "scale(#{@state.scale})"
+        "-ms-transform": "scale(#{@state.scale})"
     }, [
       input {
         ref: 'lastname'

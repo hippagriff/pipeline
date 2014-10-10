@@ -39,16 +39,15 @@ SearchBar = React.createClass
     searchToggleClass = 'search-simple'
 
     if fixedSearch
-      # Toggle the button class
+      # Use the fixed search
       searchToggleClass = 'search-fixed'
-
-      # Determine which set of fields to use
       searchFields = []
       searchFields.push(SearchFixed {
           key: 'searchFixed'
         }
       )
     else
+      # Use the simple search
       searchToggleClass = 'search-simple'
       searchFields = []
       searchFields.push(SearchSimple {
