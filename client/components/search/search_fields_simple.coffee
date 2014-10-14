@@ -59,17 +59,15 @@ SearchSimple = React.createClass
   componentDidEnter: -> @refs.searchField.getDOMNode().focus()
 
 
-  # componentDidLeave: -> @props.handleLogout()
-
-
   executeSearch: (e) ->
+    # Grab the input value
     searchTerm = @refs.searchField.getDOMNode().value
-    @props.executeSearch(searchTerm)
-    @setState({searchTerm})
 
-  
-  handleLogout: (e) ->
-    @props.handleLogout()
+    # Send the API request
+    @props.executeSearch(searchTerm)
+
+    # Change the visual state
+    @setState({ searchTerm: searchTerm })
 
   
   clearSearch: (e) ->

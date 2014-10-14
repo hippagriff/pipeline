@@ -83,21 +83,21 @@ SearchFixed = React.createClass
   componentDidEnter: -> @refs.lastname.getDOMNode().focus()
 
 
-  # componentDidLeave: -> @props.handleLogout()
-
-
   executeSearch: (e) ->
-    # @props.executeSearch(searchTerm)
-    @setState(
-      firstname: @refs.firstname.getDOMNode().value
-      lastname: @refs.lastname.getDOMNode().value
-      dob: @refs.dob.getDOMNode().value
-      mrn: @refs.mrn.getDOMNode().value
-    )
+    if e.type is 'keyup' and e.key isnt 'Enter' then return
 
-  
-  handleLogout: (e) ->
-    @props.handleLogout()
+    # Grab the input value
+    searchTerm = 
+      firstName: @refs.firstname.getDOMNode().value
+      lastName: @refs.lastname.getDOMNode().value
+      dateOfBirth: @refs.dob.getDOMNode().value
+      mrn: @refs.mrn.getDOMNode().value
+
+    # Send the API request
+    @props.executeSearch(searchTerm)
+
+    # Change the visual state
+    @setState({ searchTerm: searchTerm })
 
   
   clearSearch: (e) ->

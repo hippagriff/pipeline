@@ -15,7 +15,7 @@ SearchBar = React.createClass
 
   initialState:
     searchTerm: ''
-    fixedSearch: false
+    fixedSearch: true
 
   enterStateStart:
     top: -51
@@ -44,6 +44,7 @@ SearchBar = React.createClass
       searchFields = []
       searchFields.push(SearchFixed {
           key: 'searchFixed'
+          executeSearch: @props.executeSearch
         }
       )
     else if @state.showForm
@@ -52,6 +53,7 @@ SearchBar = React.createClass
       searchFields = []
       searchFields.push(SearchSimple {
           key: 'searchSimple'
+          executeSearch: @props.executeSearch
         }
       )
 
