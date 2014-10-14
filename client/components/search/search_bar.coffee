@@ -15,7 +15,7 @@ SearchBar = React.createClass
 
   initialState:
     searchTerm: ''
-    fixedSearch: true
+    fixedSearch: false
 
   enterStateStart:
     top: -51
