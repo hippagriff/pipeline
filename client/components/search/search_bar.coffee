@@ -16,6 +16,7 @@ SearchBar = React.createClass
   initialState:
     searchTerm: ''
     fixedSearch: false
+    showSearch: no
 
   enterStateStart:
     top: -51
@@ -94,9 +95,6 @@ SearchBar = React.createClass
         onClick: @searchToggle
       }, []
     ]
-
-  
-  getInitialState: -> { showSearch: no }
 
 
   componentDidMount: -> @setState({ showSearch: yes })
