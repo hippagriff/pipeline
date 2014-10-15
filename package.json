@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run client-watch & npm run server-start",
     "server-start": "./node_modules/.bin/node-supervisor -x coffee --watch server,fixtures,server.coffee server.coffee",
-    "client-watch": "./node_modules/.bin/watchify client/start.coffee -o client/bundle.js --extension=.coffee --verbose",
+    "client-watch": "./node_modules/.bin/watchify client/start.coffee -d -o client/bundle.js --extension=.coffee --verbose",
     "build": "export NODE_ENV=production & gulp test-build",
     "test": "jest"
   },
